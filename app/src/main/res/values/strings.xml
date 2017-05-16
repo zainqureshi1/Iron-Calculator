@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NestleIronCalculator</string>
+    <string name="data_path">d:/projects</string>
+</resources>
