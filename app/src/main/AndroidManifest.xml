@@ -19,12 +19,12 @@
             </intent-filter>
 
         </activity>
-        <activity android:name="com.e2esp.nestleironcalculator.activities.DairyActivity"
+        <activity android:name="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity"
             android:theme="@style/CustomTheme"
             android:parentActivityName="com.e2esp.nestleironcalculator.activities.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.e2esp.nestleironcalculator.activities.DairyActivity" />
+                android:value="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity" />
         </activity>
 
     </application>

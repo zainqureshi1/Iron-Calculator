@@ -10,10 +10,10 @@ import android.os.Parcelable;
 public class ArrowCalculationRange implements Parcelable {
 
     private Double min;
-    Double max;
-    Double position;
-    String title;
-    String resultText;
+    private Double max;
+    private Double position;
+    private String title;
+    private String resultText;
 
     public ArrowCalculationRange() {
     }

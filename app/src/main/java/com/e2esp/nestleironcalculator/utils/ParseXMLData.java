@@ -9,7 +9,10 @@ import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.DetailInstructions;
 import com.e2esp.nestleironcalculator.models.Instruction;
 import com.e2esp.nestleironcalculator.models.IronDetector;
+import com.e2esp.nestleironcalculator.models.Popup;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.models.Range;
+import com.e2esp.nestleironcalculator.models.Result;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -64,15 +67,24 @@ public class ParseXMLData {
         ArrayList<ArrowCalculationRange> arrowRanges = null;
         ArrayList<Category> categories = null;
         ArrayList<Product> products = null;
+        ArrayList<Result> results= null;
+        ArrayList<Range> ranges= null;
+        ArrayList<Popup> popups= null;
 
 
-        boolean isAgeTagStart = false;
         String currentUnderAgeText = "";
+        boolean isAgeTagStart = false;
         boolean isInstructionsTagStart = false;
         boolean isDetInstructionsTagStart = false;
         boolean isArrowCalculationRangeStart = false;
         boolean isCategoryStart = false;
         boolean isProductStart = false;
+        boolean isResultStart = false;
+        boolean isRangeStart = false;
+        boolean isPopupStart = false;
+        boolean isNoMilkGivenStart = false;
+        boolean isTooMuchMilkStart = false;
+        boolean  isTooMuchSolidStart = false;
 
         int eventType = parser.getEventType();
         AgeSelection currentAgeSelection= null;
@@ -81,6 +93,9 @@ public class ParseXMLData {
         ArrowCalculationRange currentArrowRange = null;
         Product currentProduct = null;
         Category currentCategory = null;
+        Result currentResult = null;
+        Range currentRange = null;
+        Popup currentPopup = null;
 
         while (eventType != XmlPullParser.END_DOCUMENT) {
             String name = null;
@@ -92,6 +107,9 @@ public class ParseXMLData {
                     arrowRanges =  new ArrayList<ArrowCalculationRange>();
                     categories = new ArrayList<Category>();
                     products = new ArrayList<Product>();
+                    results = new ArrayList<Result>();
+                    ranges = new ArrayList<Range>();
+                    popups = new ArrayList<Popup>();
 
                     break;
                 case XmlPullParser.START_TAG:
@@ -217,8 +235,72 @@ public class ParseXMLData {
                         else if (name.equals("Title") && isProductStart) {
                             currentProduct.setTitle(parser.nextText());
                         }
+                        else if (name.equals("ResultPage") ) {
+                            isResultStart = true;
+                            currentResult = new Result();
+                        }
+                        else if (name.equals("Header") && isResultStart ) {
+                            currentResult.setHeader(parser.nextText());
+                        }
+                        else if (name.equals("EstimatedIron") && isResultStart ) {
+                            currentResult.setEstimatedIron(parser.nextText());
+                        }
+                        else if (name.equals("RDAHint") && isResultStart ) {
+                            currentResult.setRDAHint(parser.nextText());
+                        }else if (name.equals("RichFoodsText") && isResultStart ) {
+                            currentResult.setRichFoodsText(parser.nextText());
+                        }
+                        else if (name.equals("Range") && isResultStart ) {
+                            currentRange = new Range();
+                            isRangeStart = true;
+                        }
+                        else if (name.equals("Min") && isRangeStart ) {
+                            currentRange.setMin( Double.parseDouble(parser.nextText()) );
+                        }
+                        else if (name.equals("Max") && isRangeStart ) {
+                            currentRange.setMax( Double.parseDouble(parser.nextText()) );
+                        }
+                        else if (name.equals("Title") && isRangeStart ) {
+                            currentRange.setTitle( parser.nextText() );
+                        }
+                        else if (name.equals("Text") && isRangeStart ) {
+                            currentRange.setText( parser.nextText() );
+                        }
 
-
+                        else if (name.equals("Popups") ) {
+                            isPopupStart = true;
+                            currentPopup = new Popup();
+                        }
+                        else if (name.equals("LetsProceed") && isPopupStart ) {
+                            currentPopup.setLetsProceed( parser.nextText() );
+                        }
+                        else if (name.equals("DontShowNoticeAgain") && isPopupStart ) {
+                            currentPopup.setDontShowThisNoticeAgain(parser.nextText() );
+                        }
+                        else if (name.equals("NoMilkGiven") && isPopupStart ) {
+                            isNoMilkGivenStart = true;
+                        }
+                        else if (name.equals("Text") && isNoMilkGivenStart ) {
+                            currentPopup.setNoMilkText(parser.nextText() );
+                        }
+                        else if (name.equals("TooMuchMilk") && isPopupStart ) {
+                            isTooMuchMilkStart = true;
+                        }
+                        else if (name.equals("MaxMilk") && isTooMuchMilkStart ) {
+                            currentPopup.setMaxMilkLimit( Integer.parseInt( parser.nextText()));
+                        }
+                        else if (name.equals("Text") && isTooMuchMilkStart ) {
+                            currentPopup.setMaxMilkText( parser.nextText() );
+                        }
+                        else if (name.equals("TooMuchSolidFood") && isPopupStart ) {
+                            isTooMuchSolidStart = true;
+                        }
+                        else if (name.equals("MaxFood") && isTooMuchSolidStart ) {
+                            currentPopup.setMaxSolidLimit( Integer.parseInt( parser.nextText()));
+                        }
+                        else if (name.equals("Text") && isTooMuchSolidStart ) {
+                            currentPopup.setMaxSolidText( parser.nextText() );
+                        }
 
                     }
                     break;
@@ -247,7 +329,7 @@ public class ParseXMLData {
                     }
                     else if (name.equalsIgnoreCase("ArrowCalculation") && isArrowCalculationRangeStart) {
                         isArrowCalculationRangeStart = false;
-                        ironDetector.setArrowCalculationRanges(arrowRanges);
+                        ironDetector.setArrowCalcRanges(arrowRanges);
                     }
                     else if (name.equalsIgnoreCase("Category") && isCategoryStart) {
                         isCategoryStart = false;
@@ -261,16 +343,42 @@ public class ParseXMLData {
                     }
                     else if (name.equalsIgnoreCase("Products") && isCategoryStart) {
                         currentCategory.setProducts(products);
-                       // products = new ArrayList<Product>();
                     }
+                    else if (name.equalsIgnoreCase("Range") && isRangeStart) {
+                        isRangeStart = false;
+                        ranges.add(currentRange);
+                        currentRange = null;
+                    }
+
+                    else if (name.equalsIgnoreCase("ResultPage") && isResultStart) {
+                        isResultStart = false;
+                        currentResult.setRanges(ranges);
+                        results.add(currentResult);
+                    }
+                    else if (name.equalsIgnoreCase("NoMilkGiven") && isNoMilkGivenStart) {
+                        isNoMilkGivenStart = false;
+                    }
+                    else if (name.equalsIgnoreCase("TooMuchMilk") && isTooMuchMilkStart) {
+                        isTooMuchMilkStart = false;
+                    }
+                    else if (name.equalsIgnoreCase("TooMuchSolidFood") && isTooMuchSolidStart) {
+                        isTooMuchSolidStart = false;
+                    }
+                    else if (name.equalsIgnoreCase("Popups") && isPopupStart) {
+                        isPopupStart = false;
+                        popups.add(currentPopup);
+                    }
+
 
 
             }
             eventType = parser.next();
         }
         ironDetector.setAge(ageSelection);
-        ironDetector.setInstruction(instructions);
+        ironDetector.setInstructions(instructions);
         ironDetector.setCategories(categories);
+        ironDetector.setResults(results);
+        ironDetector.setPopups(popups);
 
         print(ironDetector);
     }
@@ -282,6 +390,56 @@ public class ParseXMLData {
         //content = content + "CommaSign :" + ironDetector.getCommaSign() + "\n";
         //content = content + "CommaDigits :" + ironDetector.getCommaDigits() + "\n";
         //content = content + "CalcIronText :" + ironDetector.getCalcIronText() + "\n";
+
+
+        content = content + " Popups \n";
+
+        ArrayList<Popup> popups = ironDetector.getPopups();
+
+        for(int i=0; i< popups.size(); i++)
+        {
+            Popup currPopup = popups.get(i);
+            if(currPopup != null) {
+                content = content + "Lets Proceed :" + currPopup.getLetsProceed() + "\n";
+                content = content + "Dont show:" + currPopup.getDontShowThisNoticeAgain() + "\n";
+                content = content + "No Milk Text:" + currPopup.getNoMilkText() + "\n";
+                content = content + "Max Milk Limit:" + currPopup.getMaxMilkLimit() + "\n";
+                content = content + "Max Milk Text:" + currPopup.getMaxMilkText() + "\n";
+                content = content + "Max Solid Limit:" + currPopup.getMaxSolidLimit() + "\n";
+                content = content + "Max Solid Text:" + currPopup.getMaxSolidText() + "\n";
+
+            }
+        }
+
+        /*
+        content = content + " Result Page \n";
+
+        ArrayList<Result> results = ironDetector.getResults();
+
+        for(int i=0; i< results.size(); i++)
+        {
+            Result currResult = results.get(i);
+            if(currResult != null) {
+                content = content + "Header :" + currResult.getHeader() + "\n";
+                content = content + "Estimated Iron:" + currResult.getEstimatedIron() + "\n";
+                content = content + "RDAHint:" + currResult.getRDAHint() + "\n";
+                content = content + "RichFoodsText:" + currResult.getRichFoodsText() + "\n";
+
+                content = content + " Ranges \n";
+
+                ArrayList<Range> ranges= currResult.getRanges();
+
+                for(int j=0; j< ranges.size(); j++) {
+                    Range currRange= ranges.get(j);
+                    if (currRange != null) {
+                        content = content + "Min :" + currRange.getMin() + "\n";
+                        content = content + "Max :" + currRange.getMax() + "\n";
+                        content = content + "Title :" + currRange.getTitle() + "\n";
+                        content = content + "Text :" + currRange.getText() + "\n";
+                    }
+                }
+            }
+        }
 
         content = content + " Categories \n";
 
@@ -315,7 +473,7 @@ public class ParseXMLData {
         }
 
 
-       /* content = content + " Arrow Ranges \n";
+       content = content + " Arrow Ranges \n";
 
         ArrayList<ArrowCalculationRange> ranges = ironDetector.getArrowCalculationRanges();
 

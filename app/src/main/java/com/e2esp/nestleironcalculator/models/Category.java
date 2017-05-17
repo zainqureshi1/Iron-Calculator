@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 public class Category  implements Parcelable {
 
-    String categoryId;
-    String categoryName;
-    ArrayList<Product> products;
+    private String categoryId;
+    private String categoryName;
+    private ArrayList<Product> products;
 
     public Category()
     {}

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Instruction implements Parcelable {
 
-    ArrayList<DetailInstructions> detailInstructions;
+    private ArrayList<DetailInstructions> detailInstructions;
     private String checkIntake;
     private String legalCopyAsterisk;
     private String legalCopy;

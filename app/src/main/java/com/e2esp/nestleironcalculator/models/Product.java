@@ -9,13 +9,13 @@ import android.os.Parcelable;
 
 public class Product  implements Parcelable {
 
-    String id;
-    String name;
-    String unit;
-    String portionSize;
-    Double ironPer100mg;
-    Double ironPerPortion;
-    String title;
+    private String id;
+    private String name;
+    private String unit;
+    private String portionSize;
+    private Double ironPer100mg;
+    private Double ironPerPortion;
+    private String title;
 
     public Product()
     {

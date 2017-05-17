@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".activities.MainActivity" >
+
+    <LinearLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/reapetbg"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:tileMode="repeat"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/imgbo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|left"
+            android:layout_weight=".5"
+            android:background="@drawable/bo_age_request"
+            android:scaleType="fitStart" />
+
+        <LinearLayout
+            android:id="@+id/childLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_gravity="bottom|right"
+            android:layout_weight=".5"
+            android:background="@drawable/ironbg"
+            android:orientation="horizontal">
+
+                <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight=".7"
+                />
+
+                <LinearLayout
+                    android:id="@+id/toplayout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight=".3"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight=".79"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/arrowpoint"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/arrow_point"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="horizontal"
+                        android:layout_weight=".01"/>
+
+                    <LinearLayout
+                        android:id="@+id/bottomlayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:layout_weight=".2"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_below="@+id/parentLayout"
+        android:id="@+id/txtageSelectionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="How old is your baby?"
+        style="@style/titleText"/>
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/gvAgeSelection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="90dp"
+        android:numColumns="2"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:layout_below="@+id/txtageSelectionTitle"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"
+
+        />
+
+
+
+</RelativeLayout>

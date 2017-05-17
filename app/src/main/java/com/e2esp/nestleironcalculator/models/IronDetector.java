@@ -3,6 +3,7 @@ package com.e2esp.nestleironcalculator.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -12,23 +13,23 @@ import java.util.ArrayList;
 public class IronDetector implements Parcelable {
 
 
+    private ArrayList<AgeSelection> age;
+    private ArrayList<Instruction> instructions;
+    private ArrayList<ArrowCalculationRange> arrowCalcRanges;
+    private ArrayList<Category> categories;
+    private ArrayList<Result> results;
+    private ArrayList<Popup> popups;
 
-    ArrayList<AgeSelection> age;
-    ArrayList<Instruction> instructions;
-    ArrayList<ArrowCalculationRange> arrowCalcRanges;
-    ArrayList<Category> categories;
-
-    Double RDA;
-    String unit;
-    String commaSign;
-    String commaDigits;
-    String RDAText;
+    private Double RDA;
+    private String unit;
+    private String commaSign;
+    private String commaDigits;
+    private String RDAText;
 
 
     String calcIronText;
 
-    public IronDetector()
-    {
+    public IronDetector() {
 
     }
 
@@ -43,20 +44,22 @@ public class IronDetector implements Parcelable {
         this.calcIronText = p.readString();
 
     }
+
+    public ArrayList<Result> getResults() {
+        return results;
+    }
+
+    public void setResults(ArrayList<Result> results) {
+        this.results = results;
+    }
+
+
     public ArrayList<Category> getCategories() {
         return categories;
     }
 
     public void setCategories(ArrayList<Category> categories) {
         this.categories = categories;
-    }
-
-    public ArrayList<ArrowCalculationRange> getArrowCalculationRanges() {
-        return arrowCalcRanges;
-    }
-
-    public void setArrowCalculationRanges(ArrayList<ArrowCalculationRange> ranges) {
-        this.arrowCalcRanges = ranges;
     }
 
     public ArrayList<AgeSelection> getAge() {
@@ -67,13 +70,30 @@ public class IronDetector implements Parcelable {
         this.age = age;
     }
 
-    public ArrayList<Instruction> getInstruction() {
+    public ArrayList<Instruction> getInstructions() {
         return instructions;
     }
 
-    public void setInstruction(ArrayList<Instruction> instructions) {
+    public void setInstructions(ArrayList<Instruction> instructions) {
         this.instructions = instructions;
     }
+
+    public ArrayList<ArrowCalculationRange> getArrowCalcRanges() {
+        return arrowCalcRanges;
+    }
+
+    public void setArrowCalcRanges(ArrayList<ArrowCalculationRange> arrowCalcRanges) {
+        this.arrowCalcRanges = arrowCalcRanges;
+    }
+
+    public ArrayList<Popup> getPopups() {
+        return popups;
+    }
+
+    public void setPopups(ArrayList<Popup> popups) {
+        this.popups = popups;
+    }
+
 
     public String getCalcIronText() {
         return calcIronText;
@@ -85,7 +105,7 @@ public class IronDetector implements Parcelable {
 
 
     public String getRDA() {
-        if(RDA != null)
+        if (RDA != null)
             return RDA.toString();
         else
             return "0";
@@ -151,6 +171,7 @@ public class IronDetector implements Parcelable {
             }
             return ironDetector;
         }
+
         public IronDetector[] newArray(int size) {
             return new IronDetector[size];
         }

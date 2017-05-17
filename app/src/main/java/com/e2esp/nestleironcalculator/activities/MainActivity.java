@@ -2,13 +2,10 @@ package com.e2esp.nestleironcalculator.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
 
@@ -44,6 +41,6 @@ public class MainActivity extends Activity {
     }
     private void onbtnGoClick()
     {
-        startActivity(new Intent(this, DairyActivity.class));
+        startActivity(new Intent(this, AgeSelectionActivity.class));
     }
 }
