@@ -26,6 +26,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity" />
         </activity>
+        <activity android:name="com.e2esp.nestleironcalculator.activities.ProductsActivity"
+            android:theme="@style/CustomTheme"
+            android:parentActivityName="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.e2esp.nestleironcalculator.activities.ProductsActivity" />
+        </activity>
 
     </application>
+
 </manifest>

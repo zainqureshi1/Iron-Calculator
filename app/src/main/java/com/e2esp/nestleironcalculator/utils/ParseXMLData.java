@@ -1,5 +1,6 @@
 package com.e2esp.nestleironcalculator.utils;
 
+import android.content.Context;
 import android.util.Xml;
 
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
@@ -33,7 +34,7 @@ public class ParseXMLData {
     private XmlPullParserFactory xmlFactoryObject;
     private XmlPullParser myparser;
 
-    public void parse() throws XmlPullParserException, IOException{
+    public void parse(Context context) throws XmlPullParserException, IOException{
 
 
 
@@ -43,11 +44,11 @@ public class ParseXMLData {
             myparser = xmlFactoryObject.newPullParser();
 
 
-            InputStream in_s = NestleIronCalculatorApp.getAppContext().getAssets().open("data.xml");
+            InputStream in_s = context.getAssets().open("data.xml");
             myparser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             myparser.setInput(in_s, null);
 
-            parseXML(myparser);
+            parseXML(myparser, context);
 
         } catch (XmlPullParserException e) {
 
@@ -58,9 +59,11 @@ public class ParseXMLData {
         }
 
     }
-    private void parseXML(XmlPullParser parser) throws XmlPullParserException,IOException
+    private void parseXML(XmlPullParser parser, Context context) throws XmlPullParserException,IOException
     {
-        IronDetector ironDetector = new IronDetector();
+        IronDetector ironDetector = ((NestleIronCalculatorApp)context.getApplicationContext()).ironDetector;
+
+
         ArrayList<AgeSelection> ageSelection = null;
         ArrayList<Instruction> instructions = null;
         ArrayList<DetailInstructions> detInstructions = null;
@@ -380,7 +383,7 @@ public class ParseXMLData {
         ironDetector.setResults(results);
         ironDetector.setPopups(popups);
 
-        print(ironDetector);
+        //print(ironDetector);
     }
 
     private void print(IronDetector ironDetector) {

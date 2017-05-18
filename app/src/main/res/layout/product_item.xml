@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+
+    <TextView
+        android:id="@+id/txtProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product Name" />
+
+    <LinearLayout
+        android:id="@+id/prodDetailLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView
+            android:id="@+id/imgselect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|right"
+            android:layout_weight=".1"
+            android:background="@drawable/radio_unchecked"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:id="@+id/imgprod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|left"
+            android:layout_weight=".3"
+            android:background="@drawable/radio_unchecked"
+            android:scaleType="fitStart" />
+
+        <ImageView
+            android:id="@+id/imgMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|left"
+            android:layout_weight=".1"
+            android:background="@drawable/minus"
+            android:scaleType="fitStart" />
+
+        <TextView
+            android:id="@+id/txtPortionSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:text="PortionSize" />
+        <TextView
+            android:id="@+id/txtUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".1"
+            android:text="Unit" />
+
+        <ImageView
+            android:id="@+id/imgPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|left"
+            android:layout_weight=".1"
+            android:background="@drawable/plus"
+            android:scaleType="fitStart" />
+
+        </LinearLayout>
+
+        <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title" />
+
+</LinearLayout>

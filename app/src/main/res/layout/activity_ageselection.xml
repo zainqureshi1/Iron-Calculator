@@ -102,21 +102,109 @@
         android:text="How old is your baby?"
         style="@style/titleText"/>
 
-    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/gvAgeSelection"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnWidth="90dp"
-        android:numColumns="2"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
+    <TextView
         android:layout_below="@+id/txtageSelectionTitle"
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text=""
+       />
+
+
+    <RadioGroup
+        android:id="@+id/rgrpAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="35dp"
+        android:layout_below="@+id/space"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:textColor="@color/blue"
+        android:orientation="vertical"
+      />
 
+    <TextView
+        android:layout_below="@+id/rgrpAge"
+        android:id="@+id/space1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text=""
         />
 
+    <LinearLayout
+        android:id="@+id/layoutNotice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/space1"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:id="@+id/layoutNoticeHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layoutNotice"
+            android:orientation="horizontal"
+            android:paddingLeft="10pt"
+            >
+
+            <ImageView
+                android:id="@+id/imglcv"
+                android:layout_below="@+id/layoutNoticeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:background="@drawable/lcv"
+                android:scaleType="fitStart" />
+            <TextView
+                android:id="@+id/txtNoticeHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text=" Important Notice"
+                style="@style/impTextRed"
+                />
+
+         </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtNotice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text=" Important Notice"
+            android:paddingLeft="45dp"
+            style="@style/impText"
+            />
+
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_below="@+id/layoutNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:paddingLeft="45dp"
+        android:background="@drawable/button_next_step"/>
+
+    <Button
+        android:id="@+id/btnClose"
+        android:visibility="gone"
+        android:layout_below="@+id/layoutNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:paddingRight="45dp"
+        android:text=""
+
+        android:background="@drawable/button_close"/>
 
 
 </RelativeLayout>
