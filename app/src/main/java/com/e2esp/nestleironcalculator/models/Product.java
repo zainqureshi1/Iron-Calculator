@@ -16,6 +16,7 @@ public class Product  implements Parcelable {
     private Double ironPer100mg;
     private Double ironPerPortion;
     private String title;
+    private String selectedSize;
 
     public Product()
     {
@@ -30,6 +31,7 @@ public class Product  implements Parcelable {
         this.ironPer100mg = Double.parseDouble(p.readString());
         this.ironPerPortion = Double.parseDouble(p.readString());
         this.title = p.readString();
+        this.selectedSize = p.readString();
 
     }
 
@@ -89,6 +91,14 @@ public class Product  implements Parcelable {
         this.title = title;
     }
 
+    public String getSelectedSize() {
+        return selectedSize;
+    }
+
+    public void setSelectedSize(String selectedSize) {
+        this.selectedSize = selectedSize;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -103,6 +113,7 @@ public class Product  implements Parcelable {
         dest.writeString( getIronPer100mg().toString());
         dest.writeString( getIronPerPortion().toString());
         dest.writeString( getTitle());
+        dest.writeString( getSelectedSize());
     }
 
     public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {

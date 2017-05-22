@@ -109,7 +109,6 @@ public class ParseXMLData {
                     detInstructions = new ArrayList<DetailInstructions>();
                     arrowRanges =  new ArrayList<ArrowCalculationRange>();
                     categories = new ArrayList<Category>();
-                    products = new ArrayList<Product>();
                     results = new ArrayList<Result>();
                     ranges = new ArrayList<Range>();
                     popups = new ArrayList<Popup>();
@@ -205,6 +204,7 @@ public class ParseXMLData {
                         else if (name.equals("Category")) {
                             isCategoryStart =true;
                             currentCategory = new Category();
+                            products = new ArrayList<Product>();
                         }
                         else if (name.equals("CategoryId") && isCategoryStart) {
                             currentCategory.setCategoryId(parser.nextText());
@@ -346,6 +346,7 @@ public class ParseXMLData {
                     }
                     else if (name.equalsIgnoreCase("Products") && isCategoryStart) {
                         currentCategory.setProducts(products);
+                        products = null;
                     }
                     else if (name.equalsIgnoreCase("Range") && isRangeStart) {
                         isRangeStart = false;

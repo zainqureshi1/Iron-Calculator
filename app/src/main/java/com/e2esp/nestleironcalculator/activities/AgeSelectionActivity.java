@@ -1,16 +1,12 @@
 package com.e2esp.nestleironcalculator.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.e2esp.nestleironcalculator.R;
-import com.e2esp.nestleironcalculator.adapters.GridAdapter;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
 import com.e2esp.nestleironcalculator.models.AgeSelection;
 import com.e2esp.nestleironcalculator.utils.ParseXMLData;
@@ -26,7 +21,6 @@ import com.e2esp.nestleironcalculator.utils.ParseXMLData;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.io.LineNumberReader;
 import java.util.ArrayList;
 
 /**
@@ -79,7 +73,7 @@ public class AgeSelectionActivity extends Activity {
 
         for(int i = 0; i < ageSlabs.size(); i++) {
             button = new RadioButton(this);
-
+            button.setId(i+1);
             button.setText(ageSlabs.get(i).getText());
             button.setTextColor(ContextCompat.getColorStateList(getBaseContext(), R.color.blue));
             button.setButtonDrawable(R.drawable.custom_btn_radio);
@@ -142,28 +136,18 @@ public class AgeSelectionActivity extends Activity {
     }
     private void onNextButtonClick()
     {
-        String currentAgeSlab = null;
         int count = rbtnGroup.getChildCount();
-        ArrayList<RadioButton> listOfRadioButtons = new ArrayList<RadioButton>();
-        for (int i=0;i<count;i++) {
-            View o = rbtnGroup.getChildAt(i);
-            if (o instanceof RadioButton) {
 
-                if(((RadioButton) o).isChecked())
-                {
-                    currentAgeSlab = ((RadioButton) o).getText().toString();
-                    break;
-                }
-            }
-        }
+        int checkedItemId = rbtnGroup.getCheckedRadioButtonId();
+        RadioButton checkedBtn = (RadioButton) rbtnGroup.findViewById(checkedItemId);
 
-        if(currentAgeSlab == null)
+        if(checkedBtn == null || checkedBtn.getText() == null)
         {
             Toast.makeText(getApplicationContext(), "Please select age.", Toast.LENGTH_LONG).show();
 
         }
         else {
-            ((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(currentAgeSlab);
+            ((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedBtn.getText().toString());
             startActivity(new Intent(this, ProductsActivity.class));
         }
     }
