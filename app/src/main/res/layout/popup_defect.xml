@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/popup_bg" >
+
+    <ImageView
+        android:id="@+id/imageViewDefect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/arrow_bo_100"/>
+
+    <TextView
+        android:id="@+id/textViewDefect"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewDefect"
+        android:layout_margin="@dimen/margin_medium"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/buttonProceed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewDefect"
+        android:layout_centerHorizontal="true"
+        android:text="@string/ok_lets_proceed"
+        android:textColor="@color/white"
+        android:background="@drawable/button_blue" />
+
+</RelativeLayout>

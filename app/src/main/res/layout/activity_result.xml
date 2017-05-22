@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="@dimen/margin_small"
+    android:gravity="center_horizontal"
+    tools:context=".activities.ResultActivity" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/result"
+        android:textSize="@dimen/text_size_large"
+        android:textColor="@color/blue"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/lightBlue" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/your_babys_daily_iron_intake"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_medium_lower" />
+
+    <include layout="@layout/final_result_bar" />
+
+    <TextView
+        android:id="@+id/textViewFinalResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_medium" />
+
+    <TextView
+        android:id="@+id/textViewFinalResultMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_medium" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/lightGrey" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/iron_rich_foods_for_your_baby"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_size_medium" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/productsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

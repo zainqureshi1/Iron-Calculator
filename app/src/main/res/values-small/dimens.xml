@@ -8,6 +8,8 @@
 
     <dimen name="fullscreen_button_size">35dp</dimen>
 
+    <dimen name="final_bar_height">25dp</dimen>
+
     <dimen name="margin_minute">1dp</dimen>
     <dimen name="margin_tiny">3dp</dimen>
     <dimen name="margin_small">7dp</dimen>

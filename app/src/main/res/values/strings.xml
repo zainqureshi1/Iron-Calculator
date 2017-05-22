@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">NestleIronCalculator</string>
     <string name="data_path">d:/projects</string>
+
+    <string name="reached_intake"><br>Babies from the age of 6 months onwards need 9.3 mg of IRON daily.</br> You have reached the recommended daily IRON intake for your baby. You can calculate the results now, or re-enter the values again.</string>
+    <string name="calculate">CALCULATE</string>
+    <string name="or">OR</string>
+    <string name="try_again">TRY AGAIN</string>
+
+    <string name="ok_lets_proceed">Ok, let\'s proceed!</string>
+
+    <string name="result">RESULT</string>
+    <string name="your_babys_daily_iron_intake">Your baby\'s daily estimated IRON intake is</string>
+
+    <string name="zero">0</string>
+    <string name="twenty_five">25</string>
+    <string name="fifty">50</string>
+    <string name="seventy_five">75</string>
+    <string name="hundred_percent">100%</string>
+
+    <string name="iron_rich_foods_for_your_baby">IRON-RICH FOODS FOR YOUR BABY!</string>
+
 </resources>

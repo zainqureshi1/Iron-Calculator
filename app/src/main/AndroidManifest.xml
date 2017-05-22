@@ -3,37 +3,44 @@
     package="com.e2esp.nestleironcalculator">
 
     <application
-        android:name="com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp"
+        android:name=".applications.NestleIronCalculatorApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:theme="@style/CustomTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity android:name="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity"
-            android:theme="@style/CustomTheme"
-            android:parentActivityName="com.e2esp.nestleironcalculator.activities.MainActivity" >
+        <activity
+            android:name=".activities.AgeSelectionActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:theme="@style/CustomTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity" />
+                android:value=".activities.MainActivity" />
         </activity>
-        <activity android:name="com.e2esp.nestleironcalculator.activities.ProductsActivity"
-            android:theme="@style/CustomTheme"
-            android:parentActivityName="com.e2esp.nestleironcalculator.activities.AgeSelectionActivity" >
+        <activity
+            android:name=".activities.ProductsActivity"
+            android:parentActivityName=".activities.AgeSelectionActivity"
+            android:theme="@style/CustomTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.e2esp.nestleironcalculator.activities.ProductsActivity" />
+                android:value=".activities.AgeSelectionActivity" />
         </activity>
-
+        <activity android:name=".activities.ResultActivity"
+            android:parentActivityName=".activities.ProductsActivity"
+            android:theme="@style/CustomTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ProductsActivity" />
+        </activity>
     </application>
 
 </manifest>
