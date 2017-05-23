@@ -17,6 +17,17 @@ public class Product  implements Parcelable {
     private Double ironPerPortion;
     private String title;
     private String selectedSize;
+    private boolean isSelected;
+
+    public boolean isVisible() {
+        return isVisible;
+    }
+
+    public void setVisible(boolean visible) {
+        isVisible = visible;
+    }
+
+    private boolean isVisible;
 
     public Product()
     {
@@ -98,6 +109,15 @@ public class Product  implements Parcelable {
     public void setSelectedSize(String selectedSize) {
         this.selectedSize = selectedSize;
     }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
+
 
     @Override
     public int describeContents() {

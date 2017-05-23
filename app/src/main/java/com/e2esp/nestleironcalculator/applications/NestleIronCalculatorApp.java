@@ -16,8 +16,8 @@ public class NestleIronCalculatorApp  extends Application {
     private static Context context;
     public IronDetector ironDetector;
     private String ageSlabSelected;
-    private ArrayList<Product> selectedProducts = new ArrayList<Product>();
     private double totalIron;
+    public String visibleProductId = "";
 
     public void onCreate() {
         super.onCreate();
@@ -37,13 +37,7 @@ public class NestleIronCalculatorApp  extends Application {
     public void setAgeSlabSelected(String ageSlabSelected) {
         this.ageSlabSelected = ageSlabSelected;
     }
-    public ArrayList<Product> getSelectedProducts() {
-        return selectedProducts;
-    }
 
-    public void setSelectedProducts(ArrayList<Product> selectedProducts) {
-        this.selectedProducts = selectedProducts;
-    }
     public double getTotalIron() {
         return totalIron;
     }

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.support.v7.widget.RecyclerView;
@@ -19,8 +20,10 @@ import android.widget.Toast;
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.adapters.ProductRecyclerAdapter;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
+import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
 import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.utils.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +41,9 @@ public class ProductsActivity extends Activity {
     ProductRecyclerAdapter productsAdapter;
     Button btnNextCategory;
     Button btnCalculate;
-
+    LinearLayout ballTop;
+    LinearLayout ball;
+    LinearLayout ballBottom;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -95,6 +100,9 @@ public class ProductsActivity extends Activity {
             }
         });
         btnCalculate = (Button) findViewById(R.id.btnCalculate);
+        ballTop = (LinearLayout) findViewById(R.id.ballTop);
+        ball = (LinearLayout) findViewById(R.id.ball);
+        ballBottom = (LinearLayout) findViewById(R.id.ballBottom);
 
 
     }
@@ -139,15 +147,79 @@ public class ProductsActivity extends Activity {
         if(products.size() <= 0)
             products = categories.get(0).getProducts();
 
-        productsAdapter = new ProductRecyclerAdapter(getBaseContext(),products);
+        productsAdapter = new ProductRecyclerAdapter(getBaseContext(), products, new OnProductClickListener() {
+            @Override
+            public void onPlusClick(Product product) {
+                onImgPlusClick(product);
+            }
+
+            @Override
+            public void onMinusClick(Product product) {
+                onImgMinusClick(product);
+            }
+        });
         recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerViewProducts.setAdapter(productsAdapter);
 
 
-        //if( spinnerCategories.getCount())
-          //  gvEvents.setAdapter(new GridAdapter(((EventManagementApplication)getApplicationContext()).globalEventsArray));
+    }
+    private void onImgPlusClick(Product product)
+    {
+        int portionSize = Integer.parseInt( product.getPortionSize());
+
+        if(product.isSelected()) {
+            portionSize = Integer.parseInt( product.getPortionSize()) + Integer.parseInt(product.getSelectedSize());
+            product.setSelectedSize( String.valueOf (portionSize) );
+        }
+        else
+        {
+            product.setSelected(true);
+        }
+
+        productsAdapter.notifyDataSetChanged();
+
+        Utility.calculateIron(getBaseContext());
+        moveBall();
+
+    }
+
+    private void moveBall()
+    {
+        Utility.calculateIron(getBaseContext());
+        double topPadding = Utility.calc_ball_top_padding();
+
+        LinearLayout.LayoutParams top = (LinearLayout.LayoutParams) ballTop.getLayoutParams();
+        top.weight = (float) topPadding;
+        ballTop.setLayoutParams(top);
+
+        LinearLayout.LayoutParams bottom = (LinearLayout.LayoutParams) ballBottom.getLayoutParams();
+        bottom.weight =(float)  ( 1- .01 - topPadding);
+        ballBottom.setLayoutParams(bottom);
 
 
     }
+
+    private void onImgMinusClick(Product product)
+    {
+        boolean removeProd = false;
+        int currentProdIndex = -1;
+
+        if(product.isSelected())
+        {
+            int portionSize =  Integer.parseInt(product.getSelectedSize()) - Integer.parseInt( product.getPortionSize());
+
+            if(portionSize > 0) { //if some portion size selected then keep the product in list just update selected size
+                product.setSelectedSize(String.valueOf (portionSize));
+            }
+            else {
+                product.setSelected(false);
+            }
+        }
+        productsAdapter.notifyDataSetChanged();
+
+        Utility.calculateIron(getBaseContext());
+        moveBall();
+    }
+
 
 }

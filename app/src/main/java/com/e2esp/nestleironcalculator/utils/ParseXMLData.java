@@ -227,7 +227,9 @@ public class ParseXMLData {
                             currentProduct.setUnit(parser.nextText());
                         }
                         else if (name.equals("PortionSize") && isProductStart) {
-                            currentProduct.setPortionSize(parser.nextText());
+                            String portionSize = parser.nextText();
+                            currentProduct.setPortionSize(portionSize);
+                            currentProduct.setSelectedSize(portionSize);
                         }
                         else if (name.equals("IronPer100mg") && isProductStart) {
                             currentProduct.setIronPer100mg(Double.parseDouble(parser.nextText()));

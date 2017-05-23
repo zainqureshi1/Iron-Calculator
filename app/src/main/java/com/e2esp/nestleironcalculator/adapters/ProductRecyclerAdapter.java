@@ -17,9 +17,11 @@ import java.util.ArrayList;
 
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
+import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
 import com.e2esp.nestleironcalculator.models.AgeSelection;
 import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.utils.Utility;
 
 
 /**
@@ -31,16 +33,13 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     //private Context context;
     private ArrayList<Product> products;
     private Context context;
-    //private OnProductClickListener onProductClickListener;
+    private OnProductClickListener onProductClickListener;
 
     //public ProductRecyclerAdapter(Context context, ArrayList<Product> products, OnProductClickListener onProductClickListener) {
-        public ProductRecyclerAdapter(Context context, ArrayList<Product> products) {
+        public ProductRecyclerAdapter(Context context, ArrayList<Product> products,OnProductClickListener onProductClickListener ) {
         this.context = context;
         this.products = products;
-
-
-
-      //  this.o
+        this.onProductClickListener = onProductClickListener;
     }
 
     @Override
@@ -72,8 +71,6 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         private TextView txtTitle;
         private LinearLayout prodDetailLayout;
         private ImageView imgExpand;
-        int expandImageId;
-        int collapseImageId;
 
 
         public ProductViewHolder(View itemView) {
@@ -92,10 +89,10 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             prodDetailLayout = (LinearLayout) itemView.findViewById(R.id.prodDetailLayout);
 
 
-
         }
 
         public void bindView(final Product product, int position) {
+
 
             txtProduct.setText(product.getName());
             txtPortionSize.setText(product.getPortionSize());
@@ -111,6 +108,16 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
 
             }
 
+            int radiochecked = context.getResources().getIdentifier("radio_checked", "drawable", "com.e2esp.nestleironcalculator");
+            int radioUnChecked = context.getResources().getIdentifier("radio_unchecked", "drawable", "com.e2esp.nestleironcalculator");
+
+            if(product.isSelected())
+                imgselect.setImageResource(radiochecked);
+            else
+                imgselect.setImageResource(radioUnChecked);
+
+            txtPortionSize.setText( String.valueOf (product.getSelectedSize()) );
+
             if (position % 2 == 1) {
                 topView.setBackgroundColor(context.getResources().getColor(R.color.grey));
             } else {
@@ -118,18 +125,41 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             }
 
 
+            int collapseImageId = context.getResources().getIdentifier("collapse", "drawable", "com.e2esp.nestleironcalculator");
+            int expandImageId = context.getResources().getIdentifier("expand", "drawable", "com.e2esp.nestleironcalculator");
+
+            String visibleProduct = ((NestleIronCalculatorApp)context.getApplicationContext()).visibleProductId;
+            if(product != null && product.getId() != null && product.getId().equals(visibleProduct))
+            {
+                prodDetailLayout.setVisibility(View.VISIBLE);
+                txtTitle.setVisibility(View.VISIBLE);
+                imgExpand.setImageResource(expandImageId);
+            }
+            else {
+
+                prodDetailLayout.setVisibility(View.GONE);
+                txtTitle.setVisibility(View.GONE);
+                imgExpand.setImageResource(collapseImageId);
+
+
+            }
+
+
+
             txtProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onProductClick();
+                    onProductClick(product);
                 }
             });
+
 
             imgPlus.setOnClickListener( new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v) {
-                    onImgPlusClick(product);
+                    onProductClickListener.onPlusClick(product);
+
                 }
             });
 
@@ -137,106 +167,38 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             {
                 @Override
                 public void onClick(View v) {
-                    onImgMinusClick(product);
+                    onProductClickListener.onMinusClick(product);
                 }
             });
 
         }
 
-        private void onImgPlusClick(Product product)
+
+        private void onProductClick(Product product)
         {
-            int portionSize = 0;
-            int resourceId = context.getResources().getIdentifier("radio_checked", "drawable", "com.e2esp.nestleironcalculator");
-            imgselect.setImageResource(resourceId);
 
+            if(product.getId().equals(((NestleIronCalculatorApp)context.getApplicationContext()).visibleProductId))
+                ((NestleIronCalculatorApp)context.getApplicationContext()).visibleProductId = "";
+            else
+                ((NestleIronCalculatorApp)context.getApplicationContext()).visibleProductId = product.getId();
+            notifyDataSetChanged();
 
-            ArrayList<Product> selectedProducts = ((NestleIronCalculatorApp) context.getApplicationContext()).getSelectedProducts();
-
-            boolean prodExist = false;
-            for(Product currProd : selectedProducts) {
-                if(currProd.getId().equals(product.getId()))
-                {
-                    portionSize =Integer.parseInt( currProd.getPortionSize()) + Integer.parseInt(currProd.getSelectedSize());
-                    currProd.setSelectedSize( String.valueOf (portionSize) );
-                    prodExist = true;
-                    break;
-                }
-
-            }
-
-            if(!prodExist)
-            {
-                portionSize = Integer.parseInt(product.getPortionSize());
-
-                Product prod = new Product();
-                prod.setId(product.getId());
-                prod.setPortionSize(product.getPortionSize());
-                prod.setSelectedSize(product.getPortionSize());
-                prod.setIronPerPortion(product.getIronPerPortion());
-                selectedProducts.add(prod);
-
-
-            }
-
-            txtPortionSize.setText( String.valueOf (portionSize) );
-
-            ((NestleIronCalculatorApp) context.getApplicationContext()).setSelectedProducts(selectedProducts);
-
-
-        }
-
-        private void onImgMinusClick(Product product)
-        {
-            ArrayList<Product> selectedProducts = ((NestleIronCalculatorApp) context.getApplicationContext()).getSelectedProducts();
-
-            boolean removeProd = false;
-            int currentProdIndex = -1;
-
-            for(Product currProd : selectedProducts) {
-                currentProdIndex++;
-                if(currProd.getId().equals(product.getId()))
-                {
-                    int portionSize =  Integer.parseInt(currProd.getSelectedSize()) - Integer.parseInt( currProd.getPortionSize());
-                    if(portionSize > 0) { //if some portion size selected then keep the product in list just update selected size
-                        currProd.setSelectedSize(String.valueOf(portionSize));
-                        txtPortionSize.setText( String.valueOf (portionSize) );
-
-                        removeProd = false;
-                        break;
-                    }
-                    else
-                    {
-                        txtPortionSize.setText( product.getPortionSize() );
-                        removeProd = true;
-                    }
-                }
-
-            }
-            if(removeProd) {
-                selectedProducts.remove(currentProdIndex);
-
-                int resourceId = context.getResources().getIdentifier("radio_unchecked", "drawable", "com.e2esp.nestleironcalculator");
-                imgselect.setImageResource(resourceId);
-            }
-
-            ((NestleIronCalculatorApp) context.getApplicationContext()).setSelectedProducts(selectedProducts);
-        }
-
-        private void onProductClick()
-        {
-            int collapseImageId = context.getResources().getIdentifier("collapse", "drawable", "com.e2esp.nestleironcalculator");
-            int expandImageId = context.getResources().getIdentifier("expand", "drawable", "com.e2esp.nestleironcalculator");
-
-            if(prodDetailLayout.getVisibility() == View.VISIBLE) {
-                prodDetailLayout.setVisibility(View.GONE);
-                txtTitle.setVisibility(View.GONE);
-                imgExpand.setImageResource(collapseImageId);
-            }
-            else {
-                prodDetailLayout.setVisibility(View.VISIBLE);
-                txtTitle.setVisibility(View.VISIBLE);
-                imgExpand.setImageResource(expandImageId);
-            }
+//            int collapseImageId = context.getResources().getIdentifier("collapse", "drawable", "com.e2esp.nestleironcalculator");
+//            int expandImageId = context.getResources().getIdentifier("expand", "drawable", "com.e2esp.nestleironcalculator");
+//            if(prodDetailLayout.getVisibility() == View.VISIBLE) {
+//                prodDetailLayout.setVisibility(View.GONE);
+//                txtTitle.setVisibility(View.GONE);
+//                imgExpand.setImageResource(collapseImageId);
+//                product.setVisible(true);
+//            }
+//            else {
+//                prodDetailLayout.setVisibility(View.VISIBLE);
+//                txtTitle.setVisibility(View.VISIBLE);
+//                imgExpand.setImageResource(expandImageId);
+//                visibleProduct = "";
+//                product.setVisible(false);
+//            }
+//
 
         }
 
