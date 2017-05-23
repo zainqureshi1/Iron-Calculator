@@ -9,9 +9,9 @@ import android.os.Parcelable;
 
 public class ArrowCalculationRange implements Parcelable {
 
-    private Double min;
-    private Double max;
-    private Double position;
+    private double min;
+    private double max;
+    private double position;
     private String title;
     private String resultText;
 
@@ -19,35 +19,39 @@ public class ArrowCalculationRange implements Parcelable {
     }
 
     public ArrowCalculationRange(Parcel p) {
-
-        this.min = Double.parseDouble( p.readString());
-        this.max = Double.parseDouble(p.readString());
-        this.position = Double.parseDouble(p.readString());
+        this.min = p.readDouble();
+        this.max = p.readDouble();
+        this.position = p.readDouble();
         this.title = p.readString();
         this.resultText = p.readString();
 
     }
-    public Double getMin() {
+
+    public double getMin() {
         return min;
     }
 
-    public void setMin(Double min) {
+    public void setMin(double min) {
         this.min = min;
     }
 
-    public Double getMax() {
+    public double getMax() {
         return max;
     }
 
-    public void setMax(Double max) {
+    public void setMax(double max) {
         this.max = max;
     }
 
-    public Double getPosition() {
+    public String getRangeText() {
+        return (int)(min*100) + " - " + (int)(max*100) + "%";
+    }
+
+    public double getPosition() {
         return position;
     }
 
-    public void setPosition(Double position) {
+    public void setPosition(double position) {
         this.position = position;
     }
 
@@ -66,6 +70,11 @@ public class ArrowCalculationRange implements Parcelable {
     public void setResultText(String resultText) {
         this.resultText = resultText;
     }
+
+    public boolean isInRange(double value) {
+        return value >= min && value <= max;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -73,11 +82,11 @@ public class ArrowCalculationRange implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString( getMin().toString() );
-        dest.writeString( getMax().toString());
-        dest.writeString( getPosition().toString());
-        dest.writeString( getTitle());
-        dest.writeString( getResultText());
+        dest.writeDouble(getMin());
+        dest.writeDouble(getMax());
+        dest.writeDouble(getPosition());
+        dest.writeString(getTitle());
+        dest.writeString(getResultText());
     }
 
     public static final Parcelable.Creator<ArrowCalculationRange> CREATOR = new Parcelable.Creator<ArrowCalculationRange>() {

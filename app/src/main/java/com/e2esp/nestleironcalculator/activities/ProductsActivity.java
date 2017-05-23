@@ -1,10 +1,12 @@
 package com.e2esp.nestleironcalculator.activities;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
+import android.text.SpannableString;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
@@ -20,9 +22,11 @@ import android.widget.Toast;
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.adapters.ProductRecyclerAdapter;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
+import com.e2esp.nestleironcalculator.callbacks.OnDialogClickedListener;
 import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
 import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.utils.DialogHandler;
 import com.e2esp.nestleironcalculator.utils.Utility;
 
 import java.util.ArrayList;
@@ -34,19 +38,21 @@ import java.util.List;
 
 public class ProductsActivity extends Activity {
 
-    Spinner spinnerCategories;
-    ArrayList<Product> products  = new ArrayList<>();
-    ArrayList<Category> categories = null;
-    RecyclerView recyclerViewProducts;
-    ProductRecyclerAdapter productsAdapter;
-    Button btnNextCategory;
-    Button btnCalculate;
-    LinearLayout ballTop;
-    LinearLayout ball;
-    LinearLayout ballBottom;
+    private Spinner spinnerCategories;
+    private ArrayList<Category> categories = null;
+
+    private RecyclerView recyclerViewProducts;
+    private ArrayList<Product> products;
+    private ProductRecyclerAdapter productsAdapter;
+
+    private Button btnNextCategory;
+    private Button btnCalculate;
+
+    private LinearLayout ballTop;
+    private LinearLayout ball;
+    private LinearLayout ballBottom;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
@@ -54,43 +60,49 @@ public class ProductsActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.nestle_header);
 
         setView();
-
-
     }
+
     private void setView() {
         categories = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getCategories();
 
         spinnerCategories = (Spinner) findViewById(R.id.spinnerCategories);
-        List<String> spinnerArray = new ArrayList<String>();
-
+        List<String> spinnerArray = new ArrayList<>();
         for (int i = 0; i < categories.size(); i++) {
             spinnerArray.add(Html.fromHtml(categories.get(i).getCategoryName()).toString());
         }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategories.setAdapter(adapter);
         spinnerCategories.setSelection(0);
-
-
         spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                products =   categories.get(position).getProducts();
-                fillProducts();
+                fillProducts(categories.get(position).getProducts());
                 checkButtons();
             }
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Your code here
+            }
+        });
 
+        recyclerViewProducts = (RecyclerView) findViewById(R.id.recyclerViewProducts);
+        products = new ArrayList<>();
+        productsAdapter = new ProductRecyclerAdapter(getBaseContext(), products, new OnProductClickListener() {
+            @Override
+            public void onPlusClick(Product product) {
+                onImgPlusClick(product);
+            }
+            @Override
+            public void onMinusClick(Product product) {
+                onImgMinusClick(product);
+            }
+        });
+        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        recyclerViewProducts.setAdapter(productsAdapter);
 
-        @Override
-        public void onNothingSelected(AdapterView<?> parentView) {
-            // Your code here
-        }
-    });
-
-        fillProducts();
+        fillProducts(categories.get(0).getProducts());
 
         btnNextCategory = (Button) findViewById(R.id.btnNextCategory);
         btnNextCategory.setOnClickListener(new View.OnClickListener() {
@@ -100,91 +112,76 @@ public class ProductsActivity extends Activity {
             }
         });
         btnCalculate = (Button) findViewById(R.id.btnCalculate);
+        btnCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onCalculateButtonClick();
+            }
+        });
         ballTop = (LinearLayout) findViewById(R.id.ballTop);
         ball = (LinearLayout) findViewById(R.id.ball);
         ballBottom = (LinearLayout) findViewById(R.id.ballBottom);
-
-
     }
 
-    private void onNextButtonClick()
-    {
+    private void onNextButtonClick() {
         int position = spinnerCategories.getSelectedItemPosition();
-
-        if(position < spinnerCategories.getCount() ) {
-
-            spinnerCategories.setSelection(position + 1);
-            products = categories.get(position+1).getProducts();
-            fillProducts();
+        if (position < 0)  {
+            position = 0;
         }
+        if (position < spinnerCategories.getCount() - 1) {
+            spinnerCategories.setSelection(position + 1);
+            fillProducts(categories.get(position + 1).getProducts());
+        }
+    }
 
+    private void onCalculateButtonClick() {
+        startActivity(new Intent(this, ResultActivity.class));
     }
 
     private void checkButtons() {
-
-        if (spinnerCategories.getSelectedItemPosition() == spinnerCategories.getCount()-1)//if last category is selected
+        if (spinnerCategories.getSelectedItemPosition() == spinnerCategories.getCount() - 1)//if last category is selected
         {
-            btnCalculate.setVisibility(View.VISIBLE);
             btnNextCategory.setVisibility(View.GONE);
-
-        }
-      /*  else if (spinnerCategories.getSelectedItemPosition() >0)
-        {
-            btnCalculate.setVisibility(View.VISIBLE);
-        }
-        else if (spinnerCategories.getSelectedItemPosition() == 0)//first item is selected
-        {
-            btnCalculate.setVisibility(View.GONE);
+        } else {
             btnNextCategory.setVisibility(View.VISIBLE);
-        }*/
-
-    }
-
-    private void fillProducts()
-    {
-        recyclerViewProducts = (RecyclerView) findViewById(R.id.recyclerViewProducts);
-
-        if(products.size() <= 0)
-            products = categories.get(0).getProducts();
-
-        productsAdapter = new ProductRecyclerAdapter(getBaseContext(), products, new OnProductClickListener() {
-            @Override
-            public void onPlusClick(Product product) {
-                onImgPlusClick(product);
-            }
-
-            @Override
-            public void onMinusClick(Product product) {
-                onImgMinusClick(product);
-            }
-        });
-        recyclerViewProducts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        recyclerViewProducts.setAdapter(productsAdapter);
-
-
-    }
-    private void onImgPlusClick(Product product)
-    {
-        int portionSize = Integer.parseInt( product.getPortionSize());
-
-        if(product.isSelected()) {
-            portionSize = Integer.parseInt( product.getPortionSize()) + Integer.parseInt(product.getSelectedSize());
-            product.setSelectedSize( String.valueOf (portionSize) );
         }
-        else
-        {
+    }
+
+    private void fillProducts(ArrayList<Product> newProducts) {
+        products.clear();
+        products.addAll(newProducts);
+        productsAdapter.notifyDataSetChanged();
+    }
+
+    private void onImgPlusClick(Product product) {
+        if (product.isSelected()) {
+            double portionSize = product.getPortionSize() + product.getSelectedSize();
+            product.setSelectedSize(portionSize);
+        } else {
             product.setSelected(true);
         }
 
         productsAdapter.notifyDataSetChanged();
-
-        Utility.calculateIron(getBaseContext());
         moveBall();
-
+        checkPopupLimits();
     }
 
-    private void moveBall()
-    {
+    private void onImgMinusClick(Product product) {
+        if (product.isSelected()) {
+            double portionSize = product.getSelectedSize() - product.getPortionSize();
+
+            if (portionSize > 0) { //if some portion size selected then keep the product in list just update selected size
+                product.setSelectedSize(portionSize);
+            } else {
+                product.setSelected(false);
+            }
+        }
+        productsAdapter.notifyDataSetChanged();
+        moveBall();
+        checkPopupLimits();
+    }
+
+    private void moveBall() {
         Utility.calculateIron(getBaseContext());
         double topPadding = Utility.calc_ball_top_padding();
 
@@ -193,33 +190,45 @@ public class ProductsActivity extends Activity {
         ballTop.setLayoutParams(top);
 
         LinearLayout.LayoutParams bottom = (LinearLayout.LayoutParams) ballBottom.getLayoutParams();
-        bottom.weight =(float)  ( 1- .01 - topPadding);
+        bottom.weight = (float) (1 - .01 - topPadding);
         ballBottom.setLayoutParams(bottom);
-
-
     }
 
-    private void onImgMinusClick(Product product)
-    {
-        boolean removeProd = false;
-        int currentProdIndex = -1;
-
-        if(product.isSelected())
-        {
-            int portionSize =  Integer.parseInt(product.getSelectedSize()) - Integer.parseInt( product.getPortionSize());
-
-            if(portionSize > 0) { //if some portion size selected then keep the product in list just update selected size
-                product.setSelectedSize(String.valueOf (portionSize));
-            }
-            else {
-                product.setSelected(false);
-            }
+    private void checkPopupLimits() {
+        if (((NestleIronCalculatorApp) getApplicationContext()).hasReachedRequiredIronLimit()) {
+            DialogHandler.showReachedIntakeDialog(this, new OnDialogClickedListener() {
+                @Override
+                public void onDialogButtonClick(Dialog dialog, int buttonIndex) {
+                    dialog.dismiss();
+                    if (buttonIndex == 0) {
+                        onCalculateButtonClick();
+                    }
+                }
+            });
+            return;
         }
-        productsAdapter.notifyDataSetChanged();
 
-        Utility.calculateIron(getBaseContext());
-        moveBall();
+        if (((NestleIronCalculatorApp) getApplicationContext()).hasExceededMaxMilkLimit()) {
+            String maxMilkText = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getPopups().get(0).getMaxMilkText();
+            DialogHandler.showDefectDialog(this, new SpannableString(Html.fromHtml(maxMilkText)), new OnDialogClickedListener() {
+                @Override
+                public void onDialogButtonClick(Dialog dialog, int buttonIndex) {
+                    dialog.dismiss();
+                }
+            });
+            return;
+        }
+
+        if (((NestleIronCalculatorApp) getApplicationContext()).hasExceededMaxSolidFoodLimit()) {
+            String maxSolidFoodText = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getPopups().get(0).getMaxSolidText();
+            DialogHandler.showDefectDialog(this, new SpannableString(Html.fromHtml(maxSolidFoodText)), new OnDialogClickedListener() {
+                @Override
+                public void onDialogButtonClick(Dialog dialog, int buttonIndex) {
+                    dialog.dismiss();
+                }
+            });
+            return;
+        }
     }
-
 
 }

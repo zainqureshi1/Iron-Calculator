@@ -104,14 +104,14 @@ public class ParseXMLData {
             String name = null;
             switch (eventType) {
                 case XmlPullParser.START_DOCUMENT:
-                    ageSelection = new ArrayList<AgeSelection>();
-                    instructions = new ArrayList<Instruction>();
-                    detInstructions = new ArrayList<DetailInstructions>();
-                    arrowRanges =  new ArrayList<ArrowCalculationRange>();
-                    categories = new ArrayList<Category>();
-                    results = new ArrayList<Result>();
-                    ranges = new ArrayList<Range>();
-                    popups = new ArrayList<Popup>();
+                    ageSelection = new ArrayList<>();
+                    instructions = new ArrayList<>();
+                    detInstructions = new ArrayList<>();
+                    arrowRanges =  new ArrayList<>();
+                    categories = new ArrayList<>();
+                    results = new ArrayList<>();
+                    ranges = new ArrayList<>();
+                    popups = new ArrayList<>();
 
                     break;
                 case XmlPullParser.START_TAG:
@@ -227,15 +227,29 @@ public class ParseXMLData {
                             currentProduct.setUnit(parser.nextText());
                         }
                         else if (name.equals("PortionSize") && isProductStart) {
-                            String portionSize = parser.nextText();
-                            currentProduct.setPortionSize(portionSize);
-                            currentProduct.setSelectedSize(portionSize);
+                            try {
+                                double portionSize = Double.parseDouble(parser.nextText());
+                                currentProduct.setPortionSize(portionSize);
+                                currentProduct.setSelectedSize(portionSize);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
                         }
                         else if (name.equals("IronPer100mg") && isProductStart) {
-                            currentProduct.setIronPer100mg(Double.parseDouble(parser.nextText()));
+                            try {
+                                double ironPer100 = Double.parseDouble(parser.nextText());
+                                currentProduct.setIronPer100mg(ironPer100);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
                         }
                         else if (name.equals("IronPerPortion") && isProductStart) {
-                            currentProduct.setIronPerPortion(Double.parseDouble(parser.nextText()));
+                            try {
+                                double ironPerPortion = Double.parseDouble(parser.nextText());
+                                currentProduct.setIronPerPortion(ironPerPortion);
+                            } catch (Exception ex) {
+                                ex.printStackTrace();
+                            }
                         }
                         else if (name.equals("Title") && isProductStart) {
                             currentProduct.setTitle(parser.nextText());

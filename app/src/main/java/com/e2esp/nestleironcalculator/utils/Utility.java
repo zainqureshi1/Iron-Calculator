@@ -18,30 +18,37 @@ public class Utility {
     public static double ball_bottom_padding = .2;
     public static double ball_position = 1 - (ball_bottom_padding +  ball_top_padding);
 
-
     public static void calculateIron(Context context) {
+        ArrayList<Double> totalIron = new ArrayList<>();
+        double totalMilk = 0.0;
+        double totalSolidFood = 0.0;
 
-        double totalIron =0.0;
-
-        ArrayList<Category> categories= ((NestleIronCalculatorApp) context.getApplicationContext()).ironDetector.getCategories();
-
+        ArrayList<Category> categories = ((NestleIronCalculatorApp) context.getApplicationContext()).ironDetector.getCategories();
         for(Category cat: categories) {
+            double categoryIron = 0.0;
             for (Product prod : cat.getProducts()) {
-                if(prod.isSelected())
-                    totalIron += prod.getIronPerPortion() * (Integer.parseInt(prod.getSelectedSize()) / Integer.parseInt(prod.getPortionSize()));
+                if(prod.isSelected()) {
+                    int selectedPortions = (int) (prod.getSelectedSize() / prod.getPortionSize());
+                    categoryIron += prod.getIronPerPortion() * selectedPortions;
+                    if (prod.isMilk()) {
+                        totalMilk += prod.getPortionSize() * selectedPortions;
+                    }
+                    if (prod.isSolidFood()) {
+                        totalSolidFood += prod.getPortionSize() * selectedPortions;
+                    }
+                }
             }
+            totalIron.add(categoryIron);
         }
 
-        ((NestleIronCalculatorApp) context.getApplicationContext()).setTotalIron(totalIron);
-
-
-
-
+        ((NestleIronCalculatorApp) context.getApplicationContext()).setCalculatedValues(totalIron, totalMilk, totalSolidFood);
     }
+
     public static double calc_ball_top_padding() {
-        double iron_delta = ((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).getTotalIron() / 9.3;
+        double iron_delta = ((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).getTotalIronValue() / Consts.requiredIronIntake;
 
         ball_top_padding = .79 - iron_delta;// ball_position - ball_position * (  iron_delta > 1 ? 1 : iron_delta);
         return ball_top_padding;
     }
+
 }

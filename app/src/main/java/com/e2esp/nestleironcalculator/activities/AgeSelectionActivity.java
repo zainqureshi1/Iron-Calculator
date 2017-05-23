@@ -29,16 +29,17 @@ import java.util.ArrayList;
 
 public class AgeSelectionActivity extends Activity {
 
-    LinearLayout layoutNotice;
-    RadioGroup rbtnGroup;
-    ArrayList<AgeSelection> ageSlabs = null;
-    TextView txtNotice;
-    TextView txtNoticeHeading;
-    Button btnClose;
-    Button btnNext;
+    private LinearLayout layoutNotice;
+    private RadioGroup rbtnGroup;
+    private ArrayList<AgeSelection> ageSlabs = null;
+
+    private TextView txtNotice;
+    private TextView txtNoticeHeading;
+
+    private Button btnClose;
+    private Button btnNext;
 
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
@@ -46,24 +47,18 @@ public class AgeSelectionActivity extends Activity {
         getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.nestle_header);
 
         setView();
-
-
     }
-    private void setView()
-    {
+
+    private void setView() {
         try {
             ParseXMLData parseXMLData = new ParseXMLData();
             parseXMLData.parse(getApplicationContext());
         }
         catch (XmlPullParserException e) {
-
             e.printStackTrace();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
 
         if( ((NestleIronCalculatorApp)getApplicationContext()).ironDetector != null)
             ageSlabs =  ((NestleIronCalculatorApp)getApplicationContext()).ironDetector.getAge();
@@ -93,7 +88,6 @@ public class AgeSelectionActivity extends Activity {
         btnClose = (Button)findViewById(R.id.btnClose);
         btnNext = (Button)findViewById(R.id.btnNext);
 
-
         btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,10 +102,8 @@ public class AgeSelectionActivity extends Activity {
         });
     }
 
-    private void onCloseButtonClick()
-    {
-        /*
-        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+    private void onCloseButtonClick() {
+        /*DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
@@ -119,7 +111,6 @@ public class AgeSelectionActivity extends Activity {
                         //yes button clicked
                         Toast.makeText(getApplicationContext(), "YESSSS", Toast.LENGTH_LONG).show();
                         break;
-
                     case DialogInterface.BUTTON_NEGATIVE:
                         //No button clicked
                         Toast.makeText(getApplicationContext(), "Noooo", Toast.LENGTH_LONG).show();
@@ -130,26 +121,20 @@ public class AgeSelectionActivity extends Activity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
         builder.setMessage("Are you sure?").setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
-*/
+                .setNegativeButton("No", dialogClickListener).show();*/
+
        this.finishAffinity();
     }
-    private void onNextButtonClick()
-    {
-        int count = rbtnGroup.getChildCount();
 
+    private void onNextButtonClick() {
         int checkedItemId = rbtnGroup.getCheckedRadioButtonId();
-        RadioButton checkedBtn = (RadioButton) rbtnGroup.findViewById(checkedItemId);
-
-        if(checkedBtn == null || checkedBtn.getText() == null)
-        {
+        if (checkedItemId < 1) {
             Toast.makeText(getApplicationContext(), "Please select age.", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        }
-        else {
-            ((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedBtn.getText().toString());
-            startActivity(new Intent(this, ProductsActivity.class));
-        }
+        ((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedItemId);
+        startActivity(new Intent(this, ProductsActivity.class));
     }
 
     private void onRadioButtonClick(View view) {
@@ -160,11 +145,9 @@ public class AgeSelectionActivity extends Activity {
         btnClose.setVisibility(View.GONE);
         btnNext.setVisibility(View.VISIBLE);
 
-        for(int i=0; i <ageSlabs.size();i++)
-        {
+        for(int i=0; i <ageSlabs.size();i++) {
             if(ageSlabs.get(i).getText().equals(((RadioButton) view).getText() ))//match the current selected radiobutton text with age slab
             {
-
                 if(ageSlabs.get(i).getTextHint()!= null) {
                     txtNoticeHeading.setText(ageSlabs.get(i).getTextHintTitle());
                     txtNotice.setText(ageSlabs.get(i).getTextHint());
@@ -173,8 +156,7 @@ public class AgeSelectionActivity extends Activity {
                     btnNext.setVisibility(View.GONE);
                 }
             }
-
         }
-
     }
+
 }

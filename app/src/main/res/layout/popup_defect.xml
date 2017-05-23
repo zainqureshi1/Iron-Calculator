@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/arrow_bo_100"/>
+        android:src="@drawable/bo_final"/>
 
     <TextView
         android:id="@+id/textViewDefect"

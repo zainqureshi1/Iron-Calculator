@@ -183,8 +183,6 @@
 
     </LinearLayout>
 
-
-
     <Button
         android:id="@+id/btnNext"
         android:layout_below="@+id/layoutNotice"
@@ -203,8 +201,6 @@
         android:layout_alignParentRight="true"
         android:paddingRight="45dp"
         android:text=""
-
         android:background="@drawable/button_close"/>
-
 
 </RelativeLayout>

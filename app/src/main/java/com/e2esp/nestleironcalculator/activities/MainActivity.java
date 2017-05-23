@@ -11,10 +11,10 @@ import com.e2esp.nestleironcalculator.R;
 
 public class MainActivity extends Activity {
 
-    Button btnGo;
+    private Button btnGo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
 
         requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
@@ -28,19 +28,19 @@ public class MainActivity extends Activity {
         //String text = "<a href='http://www.google.com'> Google </a>";
         //lnkIronCalculator.setText(Html.fromHtml(text));
     }
-    private void setView()
-    {
-        btnGo =  (Button) findViewById(R.id.btnGo);
+
+    private void setView() {
+        btnGo = (Button) findViewById(R.id.btnGo);
         btnGo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onbtnGoClick();
             }
         });
-
     }
-    private void onbtnGoClick()
-    {
+
+    private void onbtnGoClick() {
         startActivity(new Intent(this, AgeSelectionActivity.class));
     }
+
 }

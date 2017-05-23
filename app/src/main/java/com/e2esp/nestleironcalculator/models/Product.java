@@ -12,11 +12,11 @@ public class Product  implements Parcelable {
     private String id;
     private String name;
     private String unit;
-    private String portionSize;
-    private Double ironPer100mg;
-    private Double ironPerPortion;
+    private double portionSize;
+    private double ironPer100mg;
+    private double ironPerPortion;
     private String title;
-    private String selectedSize;
+    private double selectedSize;
     private boolean isSelected;
 
     public boolean isVisible() {
@@ -29,21 +29,19 @@ public class Product  implements Parcelable {
 
     private boolean isVisible;
 
-    public Product()
-    {
+    public Product() {
 
     }
-    public Product(Parcel p) {
 
+    public Product(Parcel p) {
         this.id = p.readString();
         this.name = p.readString();
         this.unit = p.readString();
-        this.portionSize = p.readString();
-        this.ironPer100mg = Double.parseDouble(p.readString());
-        this.ironPerPortion = Double.parseDouble(p.readString());
+        this.portionSize = p.readDouble();
+        this.ironPer100mg = p.readDouble();
+        this.ironPerPortion = p.readDouble();
         this.title = p.readString();
-        this.selectedSize = p.readString();
-
+        this.selectedSize = p.readDouble();
     }
 
     public String getId() {
@@ -70,27 +68,27 @@ public class Product  implements Parcelable {
         this.unit = unit;
     }
 
-    public String getPortionSize() {
+    public double getPortionSize() {
         return portionSize;
     }
 
-    public void setPortionSize(String portionSize) {
+    public void setPortionSize(double portionSize) {
         this.portionSize = portionSize;
     }
 
-    public Double getIronPer100mg() {
+    public double getIronPer100mg() {
         return ironPer100mg;
     }
 
-    public void setIronPer100mg(Double ironPer100mg) {
+    public void setIronPer100mg(double ironPer100mg) {
         this.ironPer100mg = ironPer100mg;
     }
 
-    public Double getIronPerPortion() {
+    public double getIronPerPortion() {
         return ironPerPortion;
     }
 
-    public void setIronPerPortion(Double ironPerPortion) {
+    public void setIronPerPortion(double ironPerPortion) {
         this.ironPerPortion = ironPerPortion;
     }
 
@@ -102,11 +100,11 @@ public class Product  implements Parcelable {
         this.title = title;
     }
 
-    public String getSelectedSize() {
+    public double getSelectedSize() {
         return selectedSize;
     }
 
-    public void setSelectedSize(String selectedSize) {
+    public void setSelectedSize(double selectedSize) {
         this.selectedSize = selectedSize;
     }
 
@@ -118,6 +116,13 @@ public class Product  implements Parcelable {
         isSelected = selected;
     }
 
+    public boolean isMilk() {
+        return id.toLowerCase().contains("milk") || name.toLowerCase().contains("milk");
+    }
+
+    public boolean isSolidFood() {
+        return unit.equals("g");
+    }
 
     @Override
     public int describeContents() {
@@ -129,11 +134,11 @@ public class Product  implements Parcelable {
         dest.writeString( getId() );
         dest.writeString( getName());
         dest.writeString( getUnit());
-        dest.writeString( getPortionSize());
-        dest.writeString( getIronPer100mg().toString());
-        dest.writeString( getIronPerPortion().toString());
+        dest.writeDouble( getPortionSize());
+        dest.writeDouble( getIronPer100mg());
+        dest.writeDouble( getIronPerPortion());
         dest.writeString( getTitle());
-        dest.writeString( getSelectedSize());
+        dest.writeDouble( getSelectedSize());
     }
 
     public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
@@ -149,7 +154,5 @@ public class Product  implements Parcelable {
             return new Product[size];
         }
     };
-
-
 
 }

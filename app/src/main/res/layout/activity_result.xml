@@ -4,6 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:padding="@dimen/margin_small"
     android:gravity="center_horizontal"
+    android:background="@color/white"
     tools:context=".activities.ResultActivity" >
 
     <TextView
@@ -31,7 +32,7 @@
     <include layout="@layout/final_result_bar" />
 
     <TextView
-        android:id="@+id/textViewFinalResult"
+        android:id="@+id/textViewResultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
@@ -39,7 +40,7 @@
         android:textSize="@dimen/text_size_medium" />
 
     <TextView
-        android:id="@+id/textViewFinalResultMessage"
+        android:id="@+id/textViewResultText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
@@ -58,9 +59,35 @@
         android:textColor="@color/blue"
         android:textSize="@dimen/text_size_medium" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/productsRecyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/productsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_above="@+id/btnNext" />
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="45dp"
+            android:background="@drawable/button_back_to_calculate"/>
+
+        <Button
+            android:id="@+id/btnClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="45dp"
+            android:background="@drawable/button_close"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
