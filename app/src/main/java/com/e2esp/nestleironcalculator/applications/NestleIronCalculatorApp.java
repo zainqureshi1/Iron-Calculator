@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class NestleIronCalculatorApp  extends Application {
     private static Context context;
     public IronDetector ironDetector;
-    private int ageSlabSelected;
+    //private int ageSlabSelected;
     private ArrayList<Double> totalIron;
     private double totalMilk;
     private double totalSolidFood;
@@ -32,13 +32,13 @@ public class NestleIronCalculatorApp  extends Application {
         return NestleIronCalculatorApp.context;
     }
 
-    public int getAgeSlabSelected() {
-        return ageSlabSelected;
-    }
-
-    public void setAgeSlabSelected(int ageSlabSelected) {
-        this.ageSlabSelected = ageSlabSelected;
-    }
+//    public int getAgeSlabSelected() {
+//        return ageSlabSelected;
+//    }
+//
+//    public void setAgeSlabSelected(int ageSlabSelected) {
+//        this.ageSlabSelected = ageSlabSelected;
+//    }
 
     public void setCalculatedValues(ArrayList<Double> totalIron, double totalMilk, double totalSolidFood) {
         this.totalIron.clear();

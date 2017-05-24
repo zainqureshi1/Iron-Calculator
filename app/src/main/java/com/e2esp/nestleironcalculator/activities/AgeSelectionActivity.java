@@ -133,7 +133,8 @@ public class AgeSelectionActivity extends Activity {
             return;
         }
 
-        ((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedItemId);
+        //((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedItemId);
+        ((ArrayList<AgeSelection>) ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getAge()).get(checkedItemId).setSelected(true);
         startActivity(new Intent(this, ProductsActivity.class));
     }
 

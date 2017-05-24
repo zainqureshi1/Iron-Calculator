@@ -3,6 +3,7 @@ package com.e2esp.nestleironcalculator.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
@@ -26,6 +28,7 @@ import com.e2esp.nestleironcalculator.callbacks.OnDialogClickedListener;
 import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
 import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.utils.Consts;
 import com.e2esp.nestleironcalculator.utils.DialogHandler;
 import com.e2esp.nestleironcalculator.utils.Utility;
 
@@ -51,6 +54,8 @@ public class ProductsActivity extends Activity {
     private LinearLayout ballTop;
     private LinearLayout ball;
     private LinearLayout ballBottom;
+
+    private ImageView imgbo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -121,6 +126,7 @@ public class ProductsActivity extends Activity {
         ballTop = (LinearLayout) findViewById(R.id.ballTop);
         ball = (LinearLayout) findViewById(R.id.ball);
         ballBottom = (LinearLayout) findViewById(R.id.ballBottom);
+        imgbo = (ImageView) findViewById(R.id.imgbo);
     }
 
     private void onNextButtonClick() {
@@ -163,6 +169,7 @@ public class ProductsActivity extends Activity {
 
         productsAdapter.notifyDataSetChanged();
         moveBall();
+        checkBo();
         checkPopupLimits();
     }
 
@@ -178,9 +185,18 @@ public class ProductsActivity extends Activity {
         }
         productsAdapter.notifyDataSetChanged();
         moveBall();
+        checkBo();
         checkPopupLimits();
     }
 
+    private void checkBo()
+    {
+        int bo = getApplicationContext().getResources().getIdentifier(Utility.showBo(), "drawable", "com.e2esp.nestleironcalculator");
+
+        imgbo.setBackgroundResource(bo);
+
+
+    }
     private void moveBall() {
         Utility.calculateIron(getBaseContext());
         double topPadding = Utility.calc_ball_top_padding();
@@ -190,7 +206,7 @@ public class ProductsActivity extends Activity {
         ballTop.setLayoutParams(top);
 
         LinearLayout.LayoutParams bottom = (LinearLayout.LayoutParams) ballBottom.getLayoutParams();
-        bottom.weight = (float) (1 - .01 - topPadding);
+        bottom.weight = (float) (1 - Consts.ball_space - topPadding);
         ballBottom.setLayoutParams(bottom);
     }
 

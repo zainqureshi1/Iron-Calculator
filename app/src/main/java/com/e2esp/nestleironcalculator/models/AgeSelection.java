@@ -14,6 +14,7 @@ public class AgeSelection  implements Parcelable {
     private String text;
     private String textHint;
     private String textHintTitle;
+    private boolean isSelected;
 
     public AgeSelection()
     {
@@ -37,6 +38,13 @@ public class AgeSelection  implements Parcelable {
     }
 
 
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
 
 
