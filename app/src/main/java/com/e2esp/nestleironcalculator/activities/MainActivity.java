@@ -3,9 +3,11 @@ package com.e2esp.nestleironcalculator.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
 
@@ -30,6 +32,11 @@ public class MainActivity extends Activity {
     }
 
     private void setView() {
+        ((TextView) findViewById(R.id.textViewNeedsMoreIron)).setText(getText(R.string.welcome__baby_needs_more_iron_than_you), TextView.BufferType.SPANNABLE);
+        ((TextView) findViewById(R.id.textViewNeedsIronDaily)).setText(getText(R.string.welcome__baby_needs_iron_daily), TextView.BufferType.SPANNABLE);
+        ((TextView) findViewById(R.id.textViewCheckIronIntake)).setText(getText(R.string.welcome__check_your_babys_intake), TextView.BufferType.SPANNABLE);
+        ((TextView) findViewById(R.id.textViewCategories)).setText(getText(R.string.welcome__categories), TextView.BufferType.SPANNABLE);
+
         btnGo = (Button) findViewById(R.id.btnGo);
         btnGo.setOnClickListener( new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.SpannableString;
 import android.text.SpannedString;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
@@ -18,9 +19,12 @@ public class DialogHandler {
 
     public static Dialog showReachedIntakeDialog(Context context, final OnDialogClickedListener onDialogClickedListener) {
         final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.popup_reached_intake);
+        dialog.setCancelable(false);
 
-        //((TextView) dialog.findViewById(R.id.textViewResult)).setText(context.getText(R.string.result_satisfied));
+        ((TextView) dialog.findViewById(R.id.textViewReachedIntake)).setText(context.getText(R.string.reached_intake), TextView.BufferType.SPANNABLE);
 
         dialog.findViewById(R.id.buttonCalculate).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +45,10 @@ public class DialogHandler {
 
     public static void showDefectDialog(Context context, SpannableString message, final OnDialogClickedListener onDialogClickedListener) {
         final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         dialog.setContentView(R.layout.popup_defect);
+        dialog.setCancelable(false);
 
         ((TextView) dialog.findViewById(R.id.textViewDefect)).setText(message, TextView.BufferType.SPANNABLE);
 

@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_small"
         android:src="@drawable/bo_final"/>
 
     <TextView
@@ -24,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewReachedIntake"
+        android:layout_marginBottom="@dimen/margin_small"
         android:gravity="center"
         android:orientation="horizontal" >
 

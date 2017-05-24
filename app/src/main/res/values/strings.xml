@@ -2,7 +2,22 @@
     <string name="app_name">NestleIronCalculator</string>
     <string name="data_path">d:/projects</string>
 
-    <string name="reached_intake"><br>Babies from the age of 6 months onwards need 9.3 mg of IRON daily.</br> You have reached the recommended daily IRON intake for your baby. You can calculate the results now, or re-enter the values again.</string>
+    <string name="welcome__iron_deficiency_cause_of_anemia">IRON deficiency is the main cause of anemia?</string>
+    <string name="welcome__baby_needs_more_iron_than_you">Your baby needs over <b>5 times more IRON</b> than you?</string>
+    <string name="welcome__iron_important_for_cognitive_development">IRON is important for your baby\'s cognitive development?</string>
+    <string name="welcome__baby_needs_iron_daily">Your baby needs <b>9.3mg of IRON</b> daily if he is above 6 months old?</string>
+    <string name="welcome__check_your_babys_intake">Check your baby\'s dietary intake of IRON with <b><font color='blue'>The NestlÃ© IRON Calculator!*</font></b></string>
+    <string name="welcome__select_babys_age">Select your baby\'s age.</string>
+    <string name="welcome__select_food_from_categories">Select the food of your baby\'s diet on an average day from these categories:</string>
+    <string name="welcome__categories"><font color='blue'>Milk &amp; Dairy Products | </font><font color='orange'>Cereals | </font><font color='green'>Fruits &amp; Vegetables | </font><font color='red'>Meat, Fish &amp; Others</font></string>
+    <string name="welcome__add_food_servings">Add complete food servings to the basket by clicking on [img src=minus/] and [img src=plus/]  (Eg: By clicking + you will be adding 1 full serving)</string>
+    <string name="welcome__click_on_next_category">Click on &quot;quoteNext Category&quot;quote to get to the next food category.</string>
+    <string name="welcome__click_on_calculate">Click on &quot;quoteCalculate&quot;quote to find out your babys daily IRON intake.</string>
+    <string name="welcome__notice">*This tool only estimates the IRON intake and not the other nutrients. It by no means, replaces medical diagnostics of your baby\’s iron intake. For a balanced diet, please follow your paediatrician/nutritionist\’s recommendation.</string>
+    <string name="welcome__who">The World Health Organization (WHO) recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</string>
+    <string name="welcome__try_it_now">TRY IT NOW!</string>
+
+    <string name="reached_intake"><b>Babies from the age of 6 months onwards need 9.3 mg of IRON daily.</b> You have reached the recommended daily IRON intake for your baby. You can calculate the results now, or re-enter the values again.</string>
     <string name="calculate">CALCULATE</string>
     <string name="or">OR</string>
     <string name="try_again">TRY AGAIN</string>
