@@ -3,9 +3,11 @@ package com.e2esp.nestleironcalculator.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -27,16 +29,15 @@ import java.util.ArrayList;
 
 public class ResultActivity extends Activity {
 
-    private View viewDairyPercent;
-    private View viewCerealPercent;
-    private View viewFruitsPercent;
-    private View viewMeatPercent;
-    private View viewEmptyPercent;
+    private View[] percentViews;
+    private View emptyPercentView;
 
     private TextView textViewResultTitle;
     private TextView textViewResultText;
 
     private RecyclerView productsRecyclerView;
+
+    private double[] finalWeights;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,14 +50,21 @@ public class ResultActivity extends Activity {
         setView();
         calculateTotalIronPercent();
         calculateCateogryIronPercents();
+        checkPopupLimits();
     }
 
     private void setView() {
-        viewDairyPercent = findViewById(R.id.viewDairyPercent);
-        viewCerealPercent = findViewById(R.id.viewCerealPercent);
-        viewFruitsPercent = findViewById(R.id.viewFruitsPercent);
-        viewMeatPercent = findViewById(R.id.viewMeatPercent);
-        viewEmptyPercent = findViewById(R.id.viewEmptyPercent);
+        percentViews = new View[4];
+        percentViews[0] = findViewById(R.id.viewDairyPercent);
+        percentViews[1] = findViewById(R.id.viewCerealPercent);
+        percentViews[2] = findViewById(R.id.viewFruitsPercent);
+        percentViews[3] = findViewById(R.id.viewMeatPercent);
+        emptyPercentView = findViewById(R.id.viewEmptyPercent);
+
+        for (View view: percentViews) {
+            setWeightOnView(0.0f, view);
+        }
+        setWeightOnView(1.0f, emptyPercentView);
 
         textViewResultTitle = (TextView) findViewById(R.id.textViewResultTitle);
         textViewResultText = (TextView) findViewById(R.id.textViewResultText);
@@ -102,41 +110,36 @@ public class ResultActivity extends Activity {
         ArrayList<Category> categories = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getCategories();
         ArrayList<Double> totalIron = ((NestleIronCalculatorApp) getApplicationContext()).getTotalIron();
         double totalIronValue = Math.max(((NestleIronCalculatorApp) getApplicationContext()).getTotalIronValue(), Consts.requiredIronIntake);
-        int dairyPercent = 0;
-        int cerealPercent = 0;
-        int fruitPercent = 0;
-        int meatPercent = 0;
+        double dairyPercent = 0;
+        double cerealPercent = 0;
+        double fruitPercent = 0;
+        double meatPercent = 0;
         for (int i = 0; i < categories.size() && i < totalIron.size(); i++) {
             String catId = categories.get(i).getCategoryId();
             double catIron = totalIron.get(i);
             if (catId.contains("dairy")) {
-                dairyPercent = (int) (catIron / totalIronValue * 100);
+                dairyPercent = catIron / totalIronValue;
             } else if (catId.contains("cereal")) {
-                cerealPercent = (int) (catIron / totalIronValue * 100);
+                cerealPercent = catIron / totalIronValue;
             } else if (catId.contains("fruit")) {
-                fruitPercent = (int) (catIron / totalIronValue * 100);
+                fruitPercent = catIron / totalIronValue;
             } else if (catId.contains("meat")) {
-                meatPercent = (int) (catIron / totalIronValue * 100);
+                meatPercent = catIron / totalIronValue;
             }
         }
-        setBarPercents(dairyPercent, cerealPercent, fruitPercent, meatPercent);
-    }
 
-    private void setBarPercents(int dairy, int cereal, int fruits, int meat) {
-        if (dairy + cereal + fruits + meat > 100) {
+        dairyPercent = Math.max(0, dairyPercent);
+        cerealPercent = Math.max(0, cerealPercent);
+        fruitPercent = Math.max(0, fruitPercent);
+        meatPercent = Math.max(0, meatPercent);
+        if (dairyPercent + cerealPercent + fruitPercent + meatPercent > 1) {
             return;
         }
-        setWeightOnView(dairy/100.0f, viewDairyPercent);
-        setWeightOnView(cereal/100.0f, viewCerealPercent);
-        setWeightOnView(fruits/100.0f, viewFruitsPercent);
-        setWeightOnView(meat/100.0f, viewMeatPercent);
-        setWeightOnView((100 - dairy - cereal - fruits - meat)/100.0f, viewEmptyPercent);
-    }
-
-    private void setWeightOnView(float weight, View view) {
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
-        layoutParams.weight = weight;
-        view.setLayoutParams(layoutParams);
+        finalWeights = new double[4];
+        finalWeights[0] = dairyPercent;
+        finalWeights[1] = cerealPercent;
+        finalWeights[2] = fruitPercent;
+        finalWeights[3] = meatPercent;
     }
 
     private void checkPopupLimits() {
@@ -146,10 +149,53 @@ public class ResultActivity extends Activity {
                 @Override
                 public void onDialogButtonClick(Dialog dialog, int buttonIndex) {
                     dialog.dismiss();
+                    startAnimatingResultBar();
                 }
             });
             return;
         }
+        startAnimatingResultBar();
+    }
+
+    private void startAnimatingResultBar() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                recursiveWeightIncrease(0, 0.0f);
+            }
+        }, 100);
+    }
+
+    /*
+     * Animate the increase in result bar category by category
+     */
+    private void recursiveWeightIncrease(final int categoryIndex, final float weight) {
+        if (categoryIndex < finalWeights.length) {
+            if (weight <= finalWeights[categoryIndex]) {
+                setWeightOnView(weight, percentViews[categoryIndex]);
+                float emptyWeight = 1.0f;
+                for (int i = 0; i < categoryIndex; i++) {
+                    emptyWeight -= finalWeights[i];
+                }
+                emptyWeight -= weight;
+                setWeightOnView(emptyWeight, emptyPercentView);
+                Log.i("Weight", "categoryIndex: "+categoryIndex+" weight: "+weight+" emptyWeight: "+emptyWeight);
+                emptyPercentView.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recursiveWeightIncrease(categoryIndex, weight + 0.1f);
+                    }
+                }, 10);
+            } else {
+                recursiveWeightIncrease(categoryIndex + 1, 0.0f);
+            }
+        }
+    }
+
+    private void setWeightOnView(float weight, View view) {
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) view.getLayoutParams();
+        layoutParams.weight = weight;
+        view.setLayoutParams(layoutParams);
     }
 
 }
