@@ -11,4 +11,5 @@ public class Consts {
     public static final double ball_min_padding = .18;
     public static final double ball_space = .07;
 
+    public static final String one_year_products_id = "nido_1plus";
 }

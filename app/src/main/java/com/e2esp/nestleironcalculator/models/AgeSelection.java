@@ -85,6 +85,35 @@ public class AgeSelection  implements Parcelable {
     }
 
 
+    public int getMinAge() {
+        int minAge =0;
+        int maxAge =0;
+
+        String[] separated = this.text.split("-"); // this will split '0 - 6 Months'
+        minAge = Integer.parseInt( separated[0].trim()); // will have '0'
+        String[] separated2  = separated[1].split(" "); // this will split '6 Months'
+        maxAge = Integer.parseInt( separated[0].trim()); // will have '6'
+
+        return minAge;
+    }
+
+
+
+    public int getMaxAge() {
+        int minAge =0;
+        int maxAge =0;
+
+        String[] separated = this.text.split("-"); // this will split '0 - 6 Months'
+        minAge = Integer.parseInt( separated[0].trim()); // will have '0'
+        String[] separated2  = separated[1].split(" "); // this will split '6 Months'
+        maxAge = Integer.parseInt( separated[0].trim()); // will have '6'
+
+
+        return maxAge;
+    }
+
+
+
     @Override
     public int describeContents() {
         return 0;

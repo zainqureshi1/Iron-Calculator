@@ -7,17 +7,27 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
+    <ScrollView
+        android:id="@+id/ScrollViewID"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true">
+    <LinearLayout
+        android:id="@+id/outerlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        >
     <LinearLayout
         android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:background="@drawable/reapetbg"
         android:orientation="horizontal"
         android:tileMode="repeat"
-        android:weightSum="1">
+        android:weightSum="1"
+        >
 
         <ImageView
             android:id="@+id/imgbo"
@@ -86,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/parentLayout"
         android:layout_centerVertical="true"
+        android:layout_gravity="center_horizontal"
         android:text="How old is your baby?" />
 
     <TextView
@@ -115,6 +126,7 @@
         android:layout_below="@+id/rgrpAge"
         android:layout_centerVertical="true"
         android:text="" />
+
 
     <LinearLayout
         android:id="@+id/layoutNotice"
@@ -168,7 +180,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/layoutNotice"
         android:background="@drawable/button_next_step"
-        android:paddingLeft="45dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:text="" />
 
     <Button
@@ -178,8 +191,14 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/layoutNotice"
         android:background="@drawable/button_close"
-        android:paddingRight="45dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_gravity="right"
         android:text=""
         android:visibility="gone" />
+
+    </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

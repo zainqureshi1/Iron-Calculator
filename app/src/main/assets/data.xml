@@ -13,14 +13,14 @@
 			<SenderEmailPlaceholder><![CDATA[Your Email*]]></SenderEmailPlaceholder>
 			<SubjectTemplate><![CDATA[Check out the Nestlé IRON Detector now!]]></SubjectTemplate>
 			<BodyTemplate><![CDATA[Hi Mums and Dads,
-I found out baby's iron intake with the Nestlé IRON Detector, which I think you will find useful! <!--You will also get some nutritious and yummy recipes that are rich in iron for little one.
+I found out my baby's iron intake with the Nestlé IRON Detector, which I think you will find useful! <!--You will also get some nutritious and yummy recipes that are rich in iron for your little one.
 			
 Get started now!
 ###URL### -->]]></BodyTemplate>
 		</Email>
 		<Twitter>
 			<Url><![CDATA[https://twitter.com/intent/tweet?text=###TEXT###&url=###URL###]]></Url>
-			<Text>I calculated baby's IRON intake with the Nestlé IRON Detector</Text>
+			<Text>I calculated my baby's IRON intake with the Nestlé IRON Detector</Text>
 		</Twitter>
 		<Facebook>
 			<Url><![CDATA[http://facebook.com/sharer/sharer.php?s=100&p[url]=###URL###&u=###URL###]]></Url>
@@ -28,26 +28,26 @@ Get started now!
 	</Settings>
 	<IronDetector>
 		<Instructions>
-			<!--<Banner element="div">
-				<Title element="h1"><![CDATA[Dear Doctor!]]></Title>
-				<DidYouKnowThat element="h2"><![CDATA[Did you know that ...]]></DidYouKnowThat>
+			<Banner element="div">
+				<Title element="h1"><![CDATA[]]></Title>
+				<DidYouKnowThat element="h2"><![CDATA[]]></DidYouKnowThat>
 				<DidYouKnowBullets element="ul">
 					<Bullet element="li"><![CDATA[IRON deficiency is the main cause of anemia?]]></Bullet>
-					<Bullet element="li"><![CDATA[Baby needs over <span class=bold>5 times more IRON</span> than you?]]></Bullet>
-					<Bullet element="li"><![CDATA[IRON is important for baby's cognitive development?]]></Bullet>
-					<Bullet element="li"><![CDATA[Baby needs <span class="bold">9.3mg of IRON</span> daily if he is above 6 months old?]]></Bullet>
+					<Bullet element="li"><![CDATA[Your baby needs over <span class=bold>5 times more IRON</span> than you?]]></Bullet>
+					<Bullet element="li"><![CDATA[IRON is important for your baby's cognitive development?]]></Bullet>
+					<Bullet element="li"><![CDATA[Your baby needs <span class="bold">9.3mg of IRON</span> daily if he is above 6 months old?]]></Bullet>
 				</DidYouKnowBullets>
-			</Banner>-->
+			</Banner>
 			<DetailedInstructions element="div">
-				<CheckIntake element="h2"><![CDATA[Check baby's dietary intake of IRON with <span id="iron_intro_goahead2" class="underlined">The Nestlé IRON Calculator!*</span>]]></CheckIntake>
+				<CheckIntake element="h2"><![CDATA[Check your baby's dietary intake of IRON with <span id="iron_intro_goahead2" class="underlined">The Nestlé IRON Calculator!*</span>]]></CheckIntake>
 				<InstructionsNumbered element="div">
 					<Instruction element="div">
 						<Number element="div">1</Number>
-						<IntructionText element="div"><![CDATA[Select baby's age.]]></IntructionText>
+						<IntructionText element="div"><![CDATA[Select your baby's age.]]></IntructionText>
 					</Instruction>
 					<Instruction element="div">
 						<Number element="div">2</Number>
-						<IntructionText element="div"><![CDATA[Select the food of baby's diet on an average day from these categories:<br />
+						<IntructionText element="div"><![CDATA[Select the food of your baby's diet on an average day from these categories:<br />
 						<span class="milk_dairy">Milk &amp; Dairy Products |</span> 
 						<span class="cereal_bread_cake"> Cereals |</span>
 						<span class="fruit_vegetables"> Fruits &amp; Vegetables |</span> 
@@ -64,11 +64,11 @@ Get started now!
 					</Instruction>
 					<Instruction element="div">
 						<Number element="div">5</Number>
-						<IntructionText element="div"><![CDATA[Click on "Calculate" to find out babys daily IRON intake.]]></IntructionText>
+						<IntructionText element="div"><![CDATA[Click on "Calculate" to find out your babys daily IRON intake.]]></IntructionText>
 					</Instruction>
 				</InstructionsNumbered>
 				<LegalCopyAsterisk element="div">*</LegalCopyAsterisk>
-				<LegalCopy element="div"><![CDATA[This tool only estimates the IRON intake and not the other nutrients. It by no means, replaces medical diagnostics of baby’s iron intake.<br/>For a balanced diet, please follow your paediatrician/nutritionist’s recommendation.<br/><br/>The World Health Organization (WHO) recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.]]></LegalCopy>
+				<LegalCopy element="div"><![CDATA[This tool only estimates the IRON intake and not the other nutrients. It by no means, replaces medical diagnostics of your baby’s iron intake.<br/>For a balanced diet, please follow your paediatrician/nutritionist’s recommendation.<br/><br/>The World Health Organization (WHO) recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.]]></LegalCopy>
 			</DetailedInstructions>
 			<TryItNow element="div">Try it now!</TryItNow>
 			<DontShowThisNoticeAgain element="div"><![CDATA[Please don’t show me this notice next time.]]></DontShowThisNoticeAgain>
@@ -80,7 +80,7 @@ Get started now!
 		<RDAText><![CDATA[WHO/FAO (World Health Organization and Food and Agriculture Organization of the United Nations) (2004).]]></RDAText>
 		<AgeSelection>
 			<AgeDefinitions>
-        <Age>
+				<Age>
 					<RDA>0.93</RDA>
 					<Text>0 - 6 Months</Text>
 				</Age>
@@ -99,7 +99,7 @@ Get started now!
 			</AgeDefinitions>
 			<UnderAgeText>0 - 6 Months</UnderAgeText>
 			<UnderAgeHintTitle>Important Notice</UnderAgeHintTitle>
-			<UnderAgeHintText>As per WHO/Local code of Pakistan complementary foods should be introduced from 6 months onwards and breast feeding should be continued for as long as possible after introduction of complementary foods.</UnderAgeHintText>
+			<UnderAgeHintText>Breastmilk is and always will be the best source of nutrition for infants. Since 150 years, Nestlé has been supporting and promoting breastmilk as the best source of nutrition for infants. The World Health Organization recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</UnderAgeHintText>
 		</AgeSelection>
 		<MinimumBreastMilk>0</MinimumBreastMilk> <!-- minimum amount of breast milk, set to 0 if you want to turn it off -->
 		<BreastFeeding>
@@ -116,7 +116,7 @@ Get started now!
 			<NoBreast>
 				<Title><![CDATA[I do not breastfeed]]></Title>
 				<WhoNoticeTitle>Important Notice</WhoNoticeTitle>
-				<WhoNoticeText>The World Health Organization recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</WhoNoticeText>
+				<WhoNoticeText>The World Health Organization recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</WhoNoticeText>
 			</NoBreast>
 		</BreastFeeding>
 		<ArrowCalculation>
@@ -149,14 +149,13 @@ Get started now!
 				<ResultText></ResultText>
 			</Range>
 		</ArrowCalculation>
-		<CalcIronText><![CDATA[TODDLERS DAILY DIET CONTAINS <span class="red">###IRON###</span> mg of IRON.]]></CalcIronText>
+		<CalcIronText><![CDATA[YOUR TODDLERS DAILY DIET CONTAINS <span class="red">###IRON###</span> mg of IRON.]]></CalcIronText>
 		<Categories>
 			<Category>
 				<CategoryId>milk_dairy</CategoryId>
 				<CategoryName><![CDATA[Dairy<br/>Products]]></CategoryName>
 				<Products>
-					<!--<Header>Dairy Products</Header>
-					<Header>Dairy Products</Header>-->
+					<Header>Dairy Products</Header>					
 					<Product>
 						<Id>fresh_cheese</Id>
 						<Name>Fresh Cheese (50% fat)</Name>
@@ -202,16 +201,21 @@ Get started now!
 						<Name>Loose Milk</Name>
 						<Unit>ml</Unit>
 						<PortionSize>100</PortionSize>
-						<IronPer100mg>0.025</IronPer100mg>
-						<IronPerPortion>0.025</IronPerPortion>
+						<IronPer100mg>0.05</IronPer100mg>
+						<IronPerPortion>0.05</IronPerPortion>
 						<Title>1 Cup = 100mls</Title>
 					</Product>
 					<Product>
-						
+						<Id>nido_1plus</Id>
+						<Name>Nido 1 Plus</Name>
+						<Unit>ml</Unit>
+						<PortionSize>100</PortionSize>
+						<IronPer100mg>0.05</IronPer100mg>
+						<IronPerPortion>0.05</IronPerPortion>
+						<Title>1 Cup = 100mls</Title>
 					</Product>
-					<Product>
-						
-					</Product>
+					
+					
 				</Products>
 			</Category>
 			<Category>
@@ -220,7 +224,7 @@ Get started now!
 				<Products>
 				
 			
-			<!--<Product richFood="true" useBigImage="true">
+			<Product richFood="true" useBigImage="true">
 						<Id>cerelac_wheat_milk</Id>
 						<Name><![CDATA[CERELAC Wheat]]></Name>						
 						<Unit>gms</Unit>
@@ -304,7 +308,7 @@ Get started now!
 						<IronPerPortion>6</IronPerPortion>
 						<Title>2 bowl = 70gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
-					</Product>-->
+					</Product>
 					
 					
 					<Product>
@@ -312,8 +316,8 @@ Get started now!
 						<Name>Rice</Name>
 						<Unit>gms</Unit>
 						<PortionSize>30</PortionSize>
-						<IronPer100mg>0.36</IronPer100mg>
-						<IronPerPortion>0.36</IronPerPortion>
+						<IronPer100mg>0.07</IronPer100mg>
+						<IronPerPortion>0.07</IronPerPortion>
 						<Title>1 bowl = 30gms</Title>
 					</Product>
 					
@@ -322,8 +326,8 @@ Get started now!
 						<Name>Oat Flakes</Name>
 						<Unit>gms</Unit>
 						<PortionSize>15</PortionSize>
-						<IronPer100mg>0.81</IronPer100mg>
-						<IronPerPortion>0.81</IronPerPortion>
+						<IronPer100mg>1.44</IronPer100mg>
+						<IronPerPortion>1.44</IronPerPortion>
 						<Title>1 bowl = 15gms</Title>
 					</Product>
 					
@@ -342,8 +346,8 @@ Get started now!
 						<Name>Wheat Flour</Name>
 						<Unit>gms</Unit>
 						<PortionSize>50</PortionSize>
-						<IronPer100mg>2.32</IronPer100mg>
-						<IronPerPortion>2.32</IronPerPortion>
+						<IronPer100mg>0.58</IronPer100mg>
+						<IronPerPortion>0.58</IronPerPortion>
 						<Title>1 bowl = 50gms</Title>
 					</Product>
 					<Product>
@@ -411,8 +415,8 @@ Get started now!
 						<Name>Raisins</Name>
 						<Unit>gms</Unit>
 						<PortionSize>3</PortionSize>
-						<IronPer100mg>0.19</IronPer100mg>
-						<IronPerPortion>0.19</IronPerPortion>
+						<IronPer100mg>0.90</IronPer100mg>
+						<IronPerPortion>0.90</IronPerPortion>
 							<Title>6 raisins = 3gms</Title>
 					</Product>
 					<Product>
@@ -420,8 +424,8 @@ Get started now!
 						<Name>Dried Dates</Name>
 						<Unit>gms</Unit>
 						<PortionSize>50</PortionSize>
-						<IronPer100mg>0.51</IronPer100mg>
-						<IronPerPortion>0.51</IronPerPortion>
+						<IronPer100mg>0.45</IronPer100mg>
+						<IronPerPortion>0.45</IronPerPortion>
 						<Title>2 Dried Dates = 50gms</Title>
 					</Product>
 					<Product>
@@ -489,8 +493,8 @@ Get started now!
 						<Name>Spinach</Name>
 						<Unit>gms</Unit>
 						<PortionSize>100</PortionSize>
-						<IronPer100mg>1.575</IronPer100mg>
-						<IronPerPortion>1.575</IronPerPortion>
+						<IronPer100mg>3.50</IronPer100mg>
+						<IronPerPortion>3.50</IronPerPortion>
 						<Title>1/4 cup= 100gms</Title>
 					</Product>
 					
@@ -510,8 +514,8 @@ Get started now!
 						<Name>Cooked Potato with Skin</Name>
 						<Unit>gms</Unit>
 						<PortionSize>127</PortionSize>
-						<IronPer100mg>0.93</IronPer100mg>
-						<IronPerPortion>0.93</IronPerPortion>
+						<IronPer100mg>6.07</IronPer100mg>
+						<IronPerPortion>6.07</IronPerPortion>
 						<Title>1/4-1/2 cup= 127gms</Title>
 					</Product>
 					<Product>
@@ -528,8 +532,8 @@ Get started now!
 						<Name>Pumpkin</Name>
 						<Unit>gms</Unit>
 						<PortionSize>100</PortionSize>
-						<IronPer100mg>0.28</IronPer100mg>
-						<IronPerPortion>0.28</IronPerPortion>
+						<IronPer100mg>0.57</IronPer100mg>
+						<IronPerPortion>0.57</IronPerPortion>
 						<Title>1/4 cup= 100gms</Title>
 					</Product>
 				</Products>
@@ -544,8 +548,8 @@ Get started now!
 						<Name>Beef Liver</Name>
 						<Unit>gms</Unit>
 						<PortionSize>30</PortionSize>
-						<IronPer100mg>1.845</IronPer100mg>
-						<IronPerPortion>1.845</IronPerPortion>
+						<IronPer100mg>1.31</IronPer100mg>
+						<IronPerPortion>1.31</IronPerPortion>
         			    <Title>1 table spoon = 30gms</Title>
 					</Product>
 					<Product>
@@ -553,8 +557,8 @@ Get started now!
 						<Name>Chicken Liver</Name>
 						<Unit>gms</Unit>
 						<PortionSize>30</PortionSize>
-						<IronPer100mg>3.48</IronPer100mg>
-						<IronPerPortion>3.48</IronPerPortion>
+						<IronPer100mg>2.33</IronPer100mg>
+						<IronPerPortion>2.33</IronPerPortion>
 						  <Title>1 table spoon = 30gms</Title>
 					</Product>
 					<Product>
@@ -665,8 +669,8 @@ Get started now!
 						<Name>Lentils</Name>
 						<Unit>gms</Unit>
 						<PortionSize>50</PortionSize>
-						<IronPer100mg>2.66</IronPer100mg>
-						<IronPerPortion>2.66</IronPerPortion>
+						<IronPer100mg>3.33</IronPer100mg>
+						<IronPerPortion>3.33</IronPerPortion>
 						<Title>1/4 cup = 50gms</Title>
 					</Product>
 					<Product>
@@ -674,8 +678,8 @@ Get started now!
 						<Name>Chickpeas</Name>
 						<Unit>gms</Unit>
 						<PortionSize>50</PortionSize>
-						<IronPer100mg>1.445</IronPer100mg>
-						<IronPerPortion>1.445</IronPerPortion>
+						<IronPer100mg>2.89</IronPer100mg>
+						<IronPerPortion>2.89</IronPerPortion>
 						<Title>1/4 cup = 50gms</Title>
 					</Product>
 					<Product>
@@ -683,8 +687,8 @@ Get started now!
 						<Name>Cowpeas</Name>
 						<Unit>gms</Unit>
 						<PortionSize>50</PortionSize>
-						<IronPer100mg>1.255</IronPer100mg>
-						<IronPerPortion>1.255</IronPerPortion>
+						<IronPer100mg>1.2</IronPer100mg>
+						<IronPerPortion>1.2</IronPerPortion>
 						<Title>1/4 cup = 50gms</Title>
 					</Product>
 				</Products>
@@ -692,9 +696,9 @@ Get started now!
 		</Categories>
 		<ResultPage>
 			<Header>Result</Header>
-			<EstimatedIron><![CDATA[Baby's daily estimated IRON intake is ]]></EstimatedIron>
+			<EstimatedIron><![CDATA[Your baby's daily estimated IRON intake is ]]></EstimatedIron>
 			<RDAHint>Recommended Daily Allowance of IRON = ###IRON### mg*</RDAHint>
-			<!--<RichFoodsTitle><![CDATA[Iron-rich Foods for your Baby!]]></RichFoodsTitle>-->
+			<RichFoodsTitle><![CDATA[Iron-rich Foods for your Baby!]]></RichFoodsTitle>
 			<RichFoodsText><![CDATA[]]></RichFoodsText>
 			<Links>
 				<Link>
@@ -714,29 +718,20 @@ Get started now!
 				<Range>
 					<Min>0.000</Min>
 					<Max>50.000</Max>
-					<Title>In Pakistan:</Title>
-					<Text><![CDATA[In Pakistan:]]></Text>
-					<!--<Min>0.000</Min>
-					<Max>50.000</Max>
 					<Title>Don't worry, let us help!</Title>
-					<Text><![CDATA[Ensure that baby is getting enough iron by giving more iron-rich foods.]]></Text>-->
+					<Text><![CDATA[Dear Mum and Dad,<br/>Ensure that your baby is getting enough iron by giving more iron-rich foods.]]></Text>
 				</Range>
 				<Range>
-					
 					<Min>50.001</Min>
 					<Max>75.000</Max>
-					<Title>In Pakistan:</Title>
-					<Text><![CDATA[In Pakistan:]]></Text>
-					<!--<Title>Just a bit more to go!</Title>
-					<Text><![CDATA[Ensure that baby is getting enough iron by giving more iron-rich foods.]]></Text>-->
+					<Title>Just a bit more to go!</Title>
+					<Text><![CDATA[Dear Mum and Dad,<br/>Ensure that your baby is getting enough iron by giving more iron-rich foods.]]></Text>
 				</Range>
 				<Range>
 					<Min>75.001</Min>
 					<Max>100.000</Max>
-					<Title>In Pakistan:</Title>
-					<Text><![CDATA[In Pakistan:]]></Text>
-					<!--<Title>You are good!</Title>
-					<Text><![CDATA[<br/>Good job! Continue giving baby a variety of iron-rich foods.]]></Text>-->
+					<Title>You are good!</Title>
+					<Text><![CDATA[Dear Mum and Dad,<br/>Good job! Continue giving your baby a variety of iron-rich foods.]]></Text>
 				</Range>
 			</CalculationRanges>
 		</ResultPage>
@@ -744,20 +739,20 @@ Get started now!
 			<LetsProceed><![CDATA[Ok, let's proceed!]]></LetsProceed>
 			<DontShowNoticeAgain><![CDATA[Please don’t show me this notice next time.]]></DontShowNoticeAgain>
 			<NoMilkGiven>
-				<Text><![CDATA[We noticed that you did not select dairy products in baby’s diet, for iron calculation, which is an important form of nutrition. Please confirm.<br/><br/>If not, you can add it from the respective categories.]]></Text>
+				<Text><![CDATA[We noticed that you did not select dairy products in your baby’s diet, for iron calculation, which is an important form of nutrition. Please confirm.<br/><br/>If not, you can add it from the respective categories.]]></Text>
 			</NoMilkGiven>
 			<TooMuchMilk>
 				<MaxMilk>1500</MaxMilk> <!-- millilitres */ -->
-				<Text><![CDATA[Please kindly confirm that you are giving more than 1,500ml of milk<br/>to baby.<br/><br/>If not, you can adjust the amount from the respective categories.]]></Text>
+				<Text><![CDATA[Please kindly confirm that you are giving more than 1,500ml of milk<br/>to your baby.<br/><br/>If not, you can adjust the amount from the respective categories.]]></Text>
 			</TooMuchMilk>
 			<TooMuchSolidFood>
 				<MaxFood>1500</MaxFood> <!-- gram -->
-				<Text><![CDATA[Please kindly confirm that you are giving more than 1,5kg of solid food<br/>to baby.<br/><br/>If not, you can adjust the amount from the respective categories.]]></Text>
+				<Text><![CDATA[Please kindly confirm that you are giving more than 1,5kg of solid food<br/>to your baby.<br/><br/>If not, you can adjust the amount from the respective categories.]]></Text>
 			</TooMuchSolidFood>
 		</Popups>
 		<HowWeCalculate>
 			<Container element="div">
-				<Title element="h1">How we calculate baby’s iron intake</Title>
+				<Title element="h1">How we calculate your baby’s iron intake</Title>
 				<Amount element="p">Amount of iron in one serving of food multiplied (x) by the Amount of food given multiplied (x) by Bioavailability*</Amount>
 				<LetsUseSpinach element="h2">Let’s use Spinach as an example:</LetsUseSpinach>
 				<Spinach element="div"><![CDATA[<img src="images/common/calculate_spinach.png"/>]]></Spinach>
@@ -775,7 +770,7 @@ Get started now!
 						<Right element="span"><![CDATA[=&nbsp;&nbsp;1.4 %]]></Right>
 					</Row>
 				</Table>
-				<Result element="h2"><![CDATA[Little one’s iron intake from this veggy will be:<br/>(2.9mg/100g) x 30g x 1,4% = 0.01218 mg]]></Result>
+				<Result element="h2"><![CDATA[Your little one’s iron intake from this veggy will be:<br/>(2.9mg/100g) x 30g x 1,4% = 0.01218 mg]]></Result>
 				<LegalCopy element="p"><![CDATA[Bioavailability refers to the proportion of nutrient (e.g. iron) that is absorbed from the diet and used for normal body functions.<br/>The RNI (Recommended Nutrient Intake) takes bioavailability into account as well.]]></LegalCopy>
 				<Asterisk element="div">*</Asterisk>
 			</Container>

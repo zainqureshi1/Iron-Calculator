@@ -15,7 +15,11 @@ import java.util.ArrayList;
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
 import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
+import com.e2esp.nestleironcalculator.models.AgeSelection;
+import com.e2esp.nestleironcalculator.models.ArrowCalculationRange;
+import com.e2esp.nestleironcalculator.models.IronDetector;
 import com.e2esp.nestleironcalculator.models.Product;
+import com.e2esp.nestleironcalculator.utils.Consts;
 
 /**
  * Created by farooq on 05-May-17.
@@ -82,13 +86,33 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         }
 
         public void bindView(final Product product, int position) {
+
+            //check if this product is for 1+ years
+            IronDetector ironDetector = (((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).ironDetector);
+            ArrayList<AgeSelection> ages = (ArrayList<AgeSelection>) ironDetector.getAge();
+
+
+            for (AgeSelection age : ages) {
+                if (age.isSelected() ) {
+
+                    if(age.getMaxAge() <= 12 && product.getId().equals(Consts.one_year_products_id))
+                    {
+                        topView.setVisibility(View.GONE);
+                        return;
+                    }
+                    break;
+                }
+
+            }
+
+
             txtProduct.setText(product.getName());
             txtPortionSize.setText(product.getPortionSize()+"");
             txtUnit.setText(product.getUnit());
             txtTitle.setText(product.getTitle());
 
             try {
-                int resourceId = context.getResources().getIdentifier(product.getId(), "drawable", "com.e2esp.nestleironcalculator");
+                int resourceId = context.getResources().getIdentifier(product.getId().toLowerCase(), "drawable", "com.e2esp.nestleironcalculator");
                 imgprod.setImageResource(resourceId);
             } catch (Exception ex) {
 
