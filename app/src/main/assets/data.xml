@@ -228,9 +228,9 @@ Get started now!
 						<Id>cerelac_wheat_milk</Id>
 						<Name><![CDATA[CERELAC Wheat]]></Name>						
 						<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
@@ -238,9 +238,9 @@ Get started now!
 						<Id>cerelac_fruit_milk</Id>
 						<Name><![CDATA[CERELAC Rice]]></Name>
 							<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 							<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						
@@ -249,32 +249,42 @@ Get started now!
 						<Id>cerelac_rice_milk</Id>
 						<Name><![CDATA[CERELAC Apple & Strawberry]]></Name>
 						<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						
-					</Product>
-					
+					</Product>					
 					
 					<Product richFood="true" useBigImage="true">
 						<Id>cerelack_what_fruits</Id>
 						<Name>CERELAC 3 Fruits</Name>
 						<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
 					<Product richFood="true" useBigImage="true">
+						<Id>cerelac_wheat_fruits</Id>
+						<Name><![CDATA[CERELAC Wheat & 3 fruits]]></Name>
+						<Unit>gms</Unit>
+						<PortionSize>25</PortionSize>
+						<IronPer100mg>7.5</IronPer100mg>
+						<IronPerPortion>1.88</IronPerPortion>
+						<Title>3 bowl = 75gms</Title>
+						<LinkUrl><![CDATA[#]]></LinkUrl> 
+					</Product>
+
+					<Product richFood="true" useBigImage="true">
 						<Id>cerelack_what_dates</Id>
 						<Name><![CDATA[CERELAC Orange & Apple]]></Name>
 						<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl= 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
@@ -282,9 +292,9 @@ Get started now!
 						<Id>cerelack_Wheat_Fruit_Pieces</Id>
 						<Name><![CDATA[CERELAC Wheat & Banana]]></Name>
 						<Unit>gms</Unit>
-						<PortionSize>75</PortionSize>
+						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>5</IronPerPortion>
+						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
@@ -292,9 +302,9 @@ Get started now!
 						<Id>cerelack_what_dates_pieces</Id>
 						<Name><![CDATA[CERELAC Red Fruits]]></Name>
 						<Unit>gms</Unit>
-						<PortionSize>70</PortionSize>
-						<IronPer100mg>6</IronPer100mg>
-						<IronPerPortion>6</IronPerPortion>
+						<PortionSize>35</PortionSize>
+						<IronPer100mg>7.5</IronPer100mg>
+						<IronPerPortion>3</IronPerPortion>
 						<Title>2 bowl = 70gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
@@ -303,13 +313,34 @@ Get started now!
 						<Id>cerelack_wheat_tropical_fruits</Id>
 						<Name><![CDATA[CERELAC Yellow Fruits]]></Name>
 						<Unit>gms</Unit>
-						<PortionSize>70</PortionSize>
-						<IronPer100mg>6</IronPer100mg>
-						<IronPerPortion>6</IronPerPortion>
+						<PortionSize>35</PortionSize>
+						<IronPer100mg>7.5</IronPer100mg>
+						<IronPerPortion>3</IronPerPortion>
 						<Title>2 bowl = 70gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
 					
+					<Product richFood="true" useBigImage="true">
+						<Id>cerelac_orange_apple</Id>
+						<Name><![CDATA[CERELAC Orange & Apple]]></Name>
+						<Unit>gms</Unit>
+						<PortionSize>25</PortionSize>
+						<IronPer100mg>7.5</IronPer100mg>
+						<IronPerPortion>1.88</IronPerPortion>
+						<Title>3 bowl = 75gms</Title>
+						<LinkUrl><![CDATA[#]]></LinkUrl> 
+					</Product>
+					<Product richFood="true" useBigImage="true">
+						<Id>cerelac_chaunsa</Id>
+						<Name><![CDATA[CERELAC Chaunsa]]></Name>
+						<Unit>gms</Unit>
+						<PortionSize>25</PortionSize>
+						<IronPer100mg>7.5</IronPer100mg>
+						<IronPerPortion>1.88</IronPerPortion>
+						<Title>3 bowl = 75gms</Title>
+						<LinkUrl><![CDATA[#]]></LinkUrl> 
+					</Product>
+
 					
 					<Product>
 						<Id>rice</Id>

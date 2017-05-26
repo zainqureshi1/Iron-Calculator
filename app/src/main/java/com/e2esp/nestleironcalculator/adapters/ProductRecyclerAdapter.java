@@ -100,6 +100,8 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                         topView.setVisibility(View.GONE);
                         return;
                     }
+                    else
+                        topView.setVisibility(View.VISIBLE);
                     break;
                 }
 

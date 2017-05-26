@@ -132,6 +132,9 @@ public class AgeSelectionActivity extends Activity {
             Toast.makeText(getApplicationContext(), "Please select age.", Toast.LENGTH_LONG).show();
             return;
         }
+        ArrayList<AgeSelection> ages = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getAge();
+        for(AgeSelection age: ages)
+            age.setSelected(false);
 
         //((NestleIronCalculatorApp) getApplicationContext()).setAgeSlabSelected(checkedItemId);
         ((ArrayList<AgeSelection>) ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getAge()).get(checkedItemId).setSelected(true);
