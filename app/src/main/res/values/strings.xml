@@ -2,6 +2,12 @@
     <string name="app_name">NestleIronCalculator</string>
     <string name="data_path">d:/projects</string>
 
+    <string name="important_notice">IMPORTANT NOTICE</string>
+    <string name="start__who_recommendation">The World Health Organization (WHO*) has recommended that pregnant women and new mothers be informed of the benefits and superiority of breast-feeding especially of early initiation and exclusive breast feeding for 6 months, in particular, the fact that it provides the best nutrition and protect babies from diarrhea and other illness. Mothers should be given guidance on the preparation for, and maintenance of lactation, the art of expressing out breastmilk, its storage and feeding it to the infant with special emphasis on the importance of a well-balanced diet both during pregnancy and after delivery. Unnecessary introduction of partial bottle-feeding or other foods and drinks should be discouraged since it will have a negative effect on breastfeeding as well as health of the infants. Similarly, mothers should be warned of the difficulty of reversing a decision not to breast feed even if bottle-feed is limited to a few bottles. Before advising a mother to use an infant formula on the recommendation of a healthcare professional, she should be advised of the social and financial implications of her decision: for example, if a baby is exclusively bottle-fed, more than one can (450g) per week will be needed, so the family circumstances and costs should be kept in mind. Mothers should be reminded that breast milk is not only the best nutrition, but also the most economical food for infants. If a decision to use an infant formula is taken, it is important to give instructions on correct preparation methods, emphasizing that unboiled water, unsterilized bottles or incorrect dilution can all lead to illness of the infants. The complementary foods must be given after the age of six months as an early introduction of the complementary food can have a bad effect on the health of the babies. The complementary foods can easily be prepared at home. The complementary foods must be given to infants above the age of six months with a cup and spoon, not in a feeding bottle.</string>
+    <string name="start__note">*See: International Code of Marketing of Breast Milk Substitutes, adopted by the World Health Assembly in Resolution WHA 34.22, May 1981 as well as the Protection of Breast Feeding and child nutrition ordinance 2002 and rules 2009 Pakistan</string>
+    <string name="start__footnote">This information material is for medical professionals only</string>
+    <string name="start__proceed">Proceed!</string>
+
     <string name="welcome__iron_deficiency_cause_of_anemia">IRON deficiency is the main cause of anemia?</string>
     <string name="welcome__baby_needs_more_iron_than_you">Your baby needs over <b>5 times more IRON</b> than you?</string>
     <string name="welcome__iron_important_for_cognitive_development">IRON is important for your baby\'s cognitive development?</string>
@@ -15,7 +21,7 @@
     <string name="welcome__click_on_calculate">Click on &quot;quoteCalculate&quot;quote to find out your babys daily IRON intake.</string>
     <string name="welcome__notice">*This tool only estimates the IRON intake and not the other nutrients. It by no means, replaces medical diagnostics of your baby\’s iron intake. For a balanced diet, please follow your paediatrician/nutritionist\’s recommendation.</string>
     <string name="welcome__who">The World Health Organization (WHO) recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</string>
-    <string name="welcome__try_it_now">Proceed!</string>
+    <string name="welcome__try_it_now">Try it now!</string>
 
     <string name="reached_intake"><b>Babies from the age of 6 months onwards need 9.3 mg of IRON daily.</b> You have reached the recommended daily IRON intake for your baby. You can calculate the results now, or re-enter the values again.</string>
     <string name="calculate">CALCULATE</string>
@@ -34,7 +40,5 @@
     <string name="hundred_percent">100%</string>
 
     <string name="iron_rich_foods_for_your_baby">IRON-RICH FOODS FOR YOUR BABY!</string>
-
-    <string name="home">The World Health Organization (WHO) recommends exclusive breast-feeding for the first 6 months. Consult your doctor for advice on when to introduce complementary foods to your baby. Breastfeeding should continue for as long as possible after introduction of complementary foods.</string>
 
 </resources>

@@ -9,10 +9,8 @@
 
     <LinearLayout
         android:id="@+id/parentLayout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/reapetbg"
         android:orientation="horizontal"
@@ -31,7 +29,7 @@
         <LinearLayout
             android:id="@+id/childLayout"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom|right"
             android:layout_weight=".5"
             android:background="@drawable/ironbg"
@@ -39,13 +37,23 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
-                android:layout_weight=".3" />
+                android:layout_height="match_parent"
+                android:layout_weight=".3"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:src="@drawable/banner_daily_intake"
+                    android:scaleType="fitCenter"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/balllayout"
                 android:layout_width="0dp"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal"
                 android:layout_weight=".7"
                 android:orientation="vertical"
@@ -53,7 +61,7 @@
 
                 <LinearLayout
                     android:id="@+id/ballFixedTopSpacelayout"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight=".2"
@@ -63,7 +71,7 @@
 
                 <LinearLayout
                     android:id="@+id/ballArea"
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_weight=".8"
