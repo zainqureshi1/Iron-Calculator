@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="@dimen/margin_small"
-    android:gravity="center_horizontal"
+    android:orientation="vertical" android:gravity="center_horizontal"
     android:background="@color/white"
     tools:context=".activities.ResultActivity" >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_small"
         android:text="@string/result"
         android:textSize="@dimen/text_size_large"
         android:textColor="@color/blue"
@@ -24,7 +23,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_small"
         android:text="@string/your_babys_daily_iron_intake"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_medium_lower" />
@@ -35,7 +34,7 @@
         android:id="@+id/textViewResultTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_medium"
+        android:layout_margin="@dimen/margin_small"
         android:textColor="@color/blue"
         android:textSize="@dimen/text_size_medium" />
 
@@ -43,18 +42,21 @@
         android:id="@+id/textViewResultText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_small"
+        android:layout_marginRight="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_small"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_medium" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_margin="@dimen/margin_small"
         android:background="@color/lightGrey" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
         android:text="@string/iron_rich_foods_for_your_baby"
         android:textColor="@color/blue"
         android:textSize="@dimen/text_size_medium" />
@@ -62,40 +64,39 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:layout_margin="@dimen/margin_small"
         android:background="@color/lightGrey" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small" >
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/productsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_above="@+id/btnNext"
-            />
+            android:layout_above="@+id/btnBack" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:paddingLeft="45dp"
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/button_back_to_calculate"
+            android:background="@android:color/transparent" />
 
-            android:background="@drawable/button_back_to_calculate"/>
-
-        <Button
+        <ImageButton
             android:id="@+id/btnClose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:paddingRight="45dp"
-            android:background="@drawable/button_close"/>
+            android:padding="@dimen/margin_small"
+            android:src="@drawable/button_close"
+            android:background="@android:color/transparent" />
 
     </RelativeLayout>
 

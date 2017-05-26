@@ -37,11 +37,7 @@ public class ParseXMLData {
     private XmlPullParser myparser;
 
     public void parse(Context context) throws XmlPullParserException, IOException{
-
-
-
         try {
-
             xmlFactoryObject = XmlPullParserFactory.newInstance();
             myparser = xmlFactoryObject.newPullParser();
 
@@ -182,7 +178,7 @@ public class ParseXMLData {
                         } else if (name.equals("CalcIronText")) {
                             ironDetector.setCalcIronText(parser.nextText());
                         }
-                        else if (name.equals("ArrowCalculation")) {
+                        else if (name.equals("CalculationRanges")) {
                             isArrowCalculationRangeStart = true;
                         }
                         else if (name.equals("Range")  && isArrowCalculationRangeStart) {
@@ -194,14 +190,11 @@ public class ParseXMLData {
                         else if (name.equals("Max") && isArrowCalculationRangeStart) {
                             currentArrowRange.setMax(Double.parseDouble(parser.nextText()));
                         }
-                        else if (name.equals("Position") && isArrowCalculationRangeStart) {
-                            currentArrowRange.setPosition(Double.parseDouble(parser.nextText()));
-                        }
                         else if (name.equals("Title") && isArrowCalculationRangeStart) {
                             currentArrowRange.setTitle(parser.nextText());
                         }
-                        else if (name.equals("ResultText") && isArrowCalculationRangeStart) {
-                            currentArrowRange.setResultText(parser.nextText());
+                        else if (name.equals("Text") && isArrowCalculationRangeStart) {
+                            currentArrowRange.setText(parser.nextText());
                         }
                         else if (name.equals("Category")) {
                             isCategoryStart =true;
@@ -355,7 +348,7 @@ public class ParseXMLData {
                         arrowRanges.add(currentArrowRange);
                         currentArrowRange = null;
                     }
-                    else if (name.equalsIgnoreCase("ArrowCalculation") && isArrowCalculationRangeStart) {
+                    else if (name.equalsIgnoreCase("CalculationRanges") && isArrowCalculationRangeStart) {
                         isArrowCalculationRangeStart = false;
                         ironDetector.setArrowCalcRanges(arrowRanges);
                     }

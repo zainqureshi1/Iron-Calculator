@@ -85,15 +85,16 @@ public class AgeSelection  implements Parcelable {
     }
 
     public boolean isInRange(double value) {
-        int minAge =0;
-        int maxAge =0;
-
-        String[] separated = this.text.split("-"); // this will split '0 - 6 Months'
-        minAge = Integer.parseInt( separated[0].trim()); // will have '0'
-        String[] separated2  = separated[1].trim().split(" "); // this will split '6 Months'
-        maxAge = Integer.parseInt( separated2[0].trim()); // will have '6'
-
-        return value >= minAge && value <= maxAge;
+        try {
+            String[] separated = this.text.split("-"); // this will split '0 - 6 Months'
+            int minAge = Integer.parseInt( separated[0].trim()); // will have '0'
+            String[] separated2  = separated[1].trim().split(" "); // this will split '6 Months'
+            int maxAge = Integer.parseInt( separated2[0].trim()); // will have '6'
+            return value >= minAge && value <= maxAge;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
     }
 
 

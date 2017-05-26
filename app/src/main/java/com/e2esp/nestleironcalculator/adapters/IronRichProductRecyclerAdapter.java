@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.models.Product;
@@ -27,7 +28,6 @@ public class IronRichProductRecyclerAdapter extends RecyclerView.Adapter<IronRic
         this.products = products;
     }
 
-
     @Override
     public IronRichProductRecyclerAdapter.ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.ironrich_product_item, parent, false);
@@ -41,37 +41,29 @@ public class IronRichProductRecyclerAdapter extends RecyclerView.Adapter<IronRic
 
     @Override
     public void onBindViewHolder(IronRichProductRecyclerAdapter.ProductViewHolder holder, int position) {
-        holder.bindView(products.get(position), position);
-
+        holder.bindView(products.get(position));
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        private View topView;
-        private ImageView imgprod;
+        private ImageView imageView;
+        private TextView textViewName;
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-            topView = itemView;
-
-            imgprod = (ImageView) itemView.findViewById(R.id.imgprod);
-
+            imageView = (ImageView) itemView.findViewById(R.id.imageViewProduct);
+            textViewName = (TextView) itemView.findViewById(R.id.textViewProductName);
         }
 
-        public void bindView(final Product product, int position) {
-
-
+        public void bindView(Product product) {
             try {
                 int resourceId = context.getResources().getIdentifier(product.getId().toLowerCase()+"_big", "drawable", "com.e2esp.nestleironcalculator");
-                imgprod.setImageResource(resourceId);
+                imageView.setImageResource(resourceId);
+                textViewName.setText(product.getName());
             } catch (Exception ex) {
-
+                ex.printStackTrace();
             }
-
-
-
         }
-
 
     }
 

@@ -139,7 +139,7 @@ public class ResultActivity extends Activity {
     private void setDataForRange(ArrowCalculationRange range) {
         String resultTitle = range.getRangeText() + " " + range.getTitle();
         textViewResultTitle.setText(Html.fromHtml(resultTitle), TextView.BufferType.SPANNABLE);
-        String resultText = range.getResultText();
+        String resultText = range.getText();
         textViewResultText.setText(Html.fromHtml(resultText), TextView.BufferType.SPANNABLE);
     }
 
@@ -200,7 +200,7 @@ public class ResultActivity extends Activity {
             public void run() {
                 recursiveWeightIncrease(0, 0.0f);
             }
-        }, 100);
+        }, 250);
     }
 
     /*
@@ -220,9 +220,9 @@ public class ResultActivity extends Activity {
                 emptyPercentView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        recursiveWeightIncrease(categoryIndex, weight + 0.1f);
+                        recursiveWeightIncrease(categoryIndex, weight + 0.05f);
                     }
-                }, 10);
+                }, 20);
             } else {
                 recursiveWeightIncrease(categoryIndex + 1, 0.0f);
             }

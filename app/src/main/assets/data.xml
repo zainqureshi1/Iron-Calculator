@@ -125,6 +125,7 @@ Get started now!
 				<Max>0.25</Max>
 				<Position>0.25</Position>
 				<Title><![CDATA[Let us<br/>help!]]></Title>
+				<Text><![CDATA[Dear Mum and Dad,<br/>Ensure that your baby is getting enough iron by giving more iron-rich foods.]]></Text>
 				<ResultText></ResultText>
 			</Range>
 			<Range>
@@ -233,7 +234,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
 						<IronPerPortion>1.66</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						
 					</Product>
@@ -244,7 +245,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
 						<IronPerPortion>1.66</IronPerPortion>
-							<Title>3 bowl = 75gms</Title>
+							<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						
 					</Product>
@@ -255,7 +256,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
 						<IronPerPortion>1.66</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						
 					</Product>					
@@ -267,7 +268,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
 						<IronPerPortion>1.66</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
 					<Product richFood="true" useBigImage="true">
@@ -277,7 +278,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>7.5</IronPer100mg>
 						<IronPerPortion>1.88</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						<minAge>6</minAge>
 						<maxAge>12</maxAge>
@@ -291,7 +292,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>5</IronPer100mg>
 						<IronPerPortion>1.66</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 					</Product>
 					<Product richFood="true" useBigImage="true">
@@ -326,7 +327,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>7.5</IronPer100mg>
 						<IronPerPortion>1.88</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						<minAge>13</minAge>
 						<maxAge>18</maxAge>						
@@ -338,7 +339,7 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>7.5</IronPer100mg>
 						<IronPerPortion>1.88</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>						
+						<Title><![CDATA[Recommended daily intake:<br/>3 Bowls = 75grams]]></Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
 						<minAge>6</minAge>
 						<maxAge>12</maxAge>
@@ -531,16 +532,15 @@ Get started now!
 						<IronPerPortion>3.50</IronPerPortion>
 						<Title>1/4 cup= 100gms</Title>
 					</Product>
-					
-					<Product>
-					<!--
+
+					<!--<Product>
 						<Id>jerusalem_artichoke</Id>
 						<Name>Jerusalem Artichoke</Name>
 						<Unit>g</Unit>
 						<PortionSize>10</PortionSize>
 						<IronPer100mg>3.7</IronPer100mg>
-						<IronPerPortion>0</IronPerPortion>-->
-					</Product>
+						<IronPerPortion>0</IronPerPortion>
+					</Product>-->
 					
 					
 					<Product>
@@ -750,20 +750,20 @@ Get started now!
 			</Links>
 			<CalculationRanges>
 				<Range>
-					<Min>0.000</Min>
-					<Max>50.000</Max>
+					<Min>0.0</Min>
+					<Max>0.5</Max>
 					<Title>Don't worry, let us help!</Title>
 					<Text><![CDATA[Dear Mum and Dad,<br/>Ensure that your baby is getting enough iron by giving more iron-rich foods.]]></Text>
 				</Range>
 				<Range>
-					<Min>50.001</Min>
-					<Max>75.000</Max>
+					<Min>0.50001</Min>
+					<Max>0.75</Max>
 					<Title>Just a bit more to go!</Title>
 					<Text><![CDATA[Dear Mum and Dad,<br/>Ensure that your baby is getting enough iron by giving more iron-rich foods.]]></Text>
 				</Range>
 				<Range>
-					<Min>75.001</Min>
-					<Max>100.000</Max>
+					<Min>0.75001</Min>
+					<Max>1.0</Max>
 					<Title>You are good!</Title>
 					<Text><![CDATA[Dear Mum and Dad,<br/>Good job! Continue giving your baby a variety of iron-rich foods.]]></Text>
 				</Range>

@@ -11,9 +11,8 @@ public class ArrowCalculationRange implements Parcelable {
 
     private double min;
     private double max;
-    private double position;
     private String title;
-    private String resultText;
+    private String text;
 
     public ArrowCalculationRange() {
     }
@@ -21,9 +20,8 @@ public class ArrowCalculationRange implements Parcelable {
     public ArrowCalculationRange(Parcel p) {
         this.min = p.readDouble();
         this.max = p.readDouble();
-        this.position = p.readDouble();
         this.title = p.readString();
-        this.resultText = p.readString();
+        this.text = p.readString();
 
     }
 
@@ -47,14 +45,6 @@ public class ArrowCalculationRange implements Parcelable {
         return (int)(min*100) + " - " + (int)(max*100) + "%";
     }
 
-    public double getPosition() {
-        return position;
-    }
-
-    public void setPosition(double position) {
-        this.position = position;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -63,12 +53,12 @@ public class ArrowCalculationRange implements Parcelable {
         this.title = title;
     }
 
-    public String getResultText() {
-        return resultText;
+    public String getText() {
+        return text;
     }
 
-    public void setResultText(String resultText) {
-        this.resultText = resultText;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public boolean isInRange(double value) {
@@ -84,9 +74,8 @@ public class ArrowCalculationRange implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeDouble(getMin());
         dest.writeDouble(getMax());
-        dest.writeDouble(getPosition());
         dest.writeString(getTitle());
-        dest.writeString(getResultText());
+        dest.writeString(getText());
     }
 
     public static final Parcelable.Creator<ArrowCalculationRange> CREATOR = new Parcelable.Creator<ArrowCalculationRange>() {

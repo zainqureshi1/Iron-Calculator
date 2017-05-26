@@ -3,7 +3,9 @@ package com.e2esp.nestleironcalculator.applications;
 import android.app.Application;
 import android.content.Context;
 
+import com.e2esp.nestleironcalculator.models.Category;
 import com.e2esp.nestleironcalculator.models.IronDetector;
+import com.e2esp.nestleironcalculator.models.Product;
 import com.e2esp.nestleironcalculator.utils.Consts;
 
 import java.util.ArrayList;
@@ -83,6 +85,21 @@ public class NestleIronCalculatorApp  extends Application {
 
     public boolean hasAddedMilk() {
         return totalMilk > 0;
+    }
+
+    public void clearSelections() {
+        ArrayList<Category> categories = ironDetector.getCategories();
+        for (Category category: categories) {
+            ArrayList<Product> products = category.getProducts();
+            for (Product product: products) {
+                product.setSelected(false);
+                product.setSelectedSize(0);
+            }
+        }
+        totalIron.clear();
+        totalMilk = 0;
+        totalSolidFood = 0;
+        visibleProductId = "";
     }
 
 }

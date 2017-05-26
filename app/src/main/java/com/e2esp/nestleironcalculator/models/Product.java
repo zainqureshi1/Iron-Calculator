@@ -86,6 +86,9 @@ public class Product  implements Parcelable {
     }
 
     public String getTitle() {
+        if (title == null) {
+            return "";
+        }
         return title;
     }
 

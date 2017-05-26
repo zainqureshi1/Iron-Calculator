@@ -3,23 +3,20 @@ package com.e2esp.nestleironcalculator.activities;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
-import android.media.Image;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Html;
 import android.text.SpannableString;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.Spinner;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
 import com.e2esp.nestleironcalculator.adapters.ProductRecyclerAdapter;
@@ -28,14 +25,12 @@ import com.e2esp.nestleironcalculator.callbacks.OnDialogClickedListener;
 import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
 import com.e2esp.nestleironcalculator.models.AgeSelection;
 import com.e2esp.nestleironcalculator.models.Category;
-import com.e2esp.nestleironcalculator.models.IronDetector;
 import com.e2esp.nestleironcalculator.models.Product;
 import com.e2esp.nestleironcalculator.utils.Consts;
 import com.e2esp.nestleironcalculator.utils.DialogHandler;
 import com.e2esp.nestleironcalculator.utils.Utility;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by farooq on 18-May-17.
@@ -43,15 +38,15 @@ import java.util.List;
 
 public class ProductsActivity extends Activity {
 
-    private Spinner spinnerCategories;
-    private ArrayList<Category> categories = null;
+    private ArrayList<Category> categories;
+    private TabLayout categoryTabs;
 
     private RecyclerView recyclerViewProducts;
     private ArrayList<Product> products;
     private ProductRecyclerAdapter productsAdapter;
 
-    private Button btnNextCategory;
-    private Button btnCalculate;
+    private ImageButton btnNextCategory;
+    private ImageButton btnCalculate;
 
     private LinearLayout ballTop;
     private LinearLayout ball;
@@ -72,28 +67,9 @@ public class ProductsActivity extends Activity {
     private void setView() {
         categories = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getCategories();
 
-        spinnerCategories = (Spinner) findViewById(R.id.spinnerCategories);
-        List<String> spinnerArray = new ArrayList<>();
-        for (int i = 0; i < categories.size(); i++) {
-            spinnerArray.add(Html.fromHtml(categories.get(i).getCategoryName()).toString());
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories.setAdapter(adapter);
-        spinnerCategories.setSelection(0);
-
-        spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                fillProducts(categories.get(position).getProducts());
-                checkButtons();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Your code here
-            }
-        });
+        categoryTabs = (TabLayout) findViewById(R.id.categoryTabs);
+        addCategoryTabs();
+        setTabSelection(0);
 
         recyclerViewProducts = (RecyclerView) findViewById(R.id.recyclerViewProducts);
         products = new ArrayList<>();
@@ -102,6 +78,7 @@ public class ProductsActivity extends Activity {
             public void onPlusClick(Product product) {
                 onImgPlusClick(product);
             }
+
             @Override
             public void onMinusClick(Product product) {
                 onImgMinusClick(product);
@@ -112,14 +89,14 @@ public class ProductsActivity extends Activity {
 
         fillProducts(categories.get(0).getProducts());
 
-        btnNextCategory = (Button) findViewById(R.id.btnNextCategory);
+        btnNextCategory = (ImageButton) findViewById(R.id.btnNextCategory);
         btnNextCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onNextButtonClick();
             }
         });
-        btnCalculate = (Button) findViewById(R.id.btnCalculate);
+        btnCalculate = (ImageButton) findViewById(R.id.btnCalculate);
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,13 +109,61 @@ public class ProductsActivity extends Activity {
         imgbo = (ImageView) findViewById(R.id.imgbo);
     }
 
+    private void addCategoryTabs() {
+        categoryTabs.removeAllTabs();
+        LayoutInflater inflater = LayoutInflater.from(this);
+
+        for (int i = 0; i < categories.size(); i++) {
+            Category category = categories.get(i);
+            TabLayout.Tab tab = categoryTabs.newTab();
+            View tabView = inflater.inflate(R.layout.category_tab, null);
+            TextView tabText = (TextView) tabView.findViewById(R.id.textViewTab);
+            tabText.setText(Html.fromHtml(category.getCategoryName()));
+            if (category.getCategoryId().contains("dairy")) {
+                tabView.setBackgroundResource(R.drawable.tab_bg_blue);
+            } else if (category.getCategoryId().contains("cereal")) {
+                tabView.setBackgroundResource(R.drawable.tab_bg_orange);
+            } else if (category.getCategoryId().contains("fruit")) {
+                tabView.setBackgroundResource(R.drawable.tab_bg_green);
+            } else if (category.getCategoryId().contains("meat")) {
+                tabView.setBackgroundResource(R.drawable.tab_bg_red);
+            }
+            tab.setCustomView(tabView);
+            categoryTabs.addTab(tab, i);
+        }
+
+        categoryTabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = categoryTabs.getSelectedTabPosition();
+                setTabSelection(position);
+                fillProducts(categories.get(position).getProducts());
+                checkButtons();
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+    }
+
+    private void setTabSelection(int selection) {
+        for (int i = 0; i < categoryTabs.getTabCount(); i++) {
+            View tabView = categoryTabs.getTabAt(i).getCustomView();
+            TextView tabText = (TextView) tabView.findViewById(R.id.textViewTab);
+            tabText.setTypeface(null, i == selection ? Typeface.BOLD : Typeface.NORMAL);
+        }
+    }
+
     private void onNextButtonClick() {
-        int position = spinnerCategories.getSelectedItemPosition();
-        if (position < 0)  {
+        int position = categoryTabs.getSelectedTabPosition();
+        if (position < 0) {
             position = 0;
         }
-        if (position < spinnerCategories.getCount() - 1) {
-            spinnerCategories.setSelection(position + 1);
+        if (position < categoryTabs.getTabCount() - 1) {
+            categoryTabs.getTabAt(position + 1).select();
             fillProducts(categories.get(position + 1).getProducts());
         }
     }
@@ -148,7 +173,7 @@ public class ProductsActivity extends Activity {
     }
 
     private void checkButtons() {
-        if (spinnerCategories.getSelectedItemPosition() == spinnerCategories.getCount() - 1)//if last category is selected
+        if (categoryTabs.getSelectedTabPosition() == categoryTabs.getTabCount() - 1)//if last category is selected
         {
             btnNextCategory.setVisibility(View.GONE);
         } else {
@@ -159,30 +184,17 @@ public class ProductsActivity extends Activity {
     private void fillProducts(ArrayList<Product> newProducts) {
         products.clear();
 
-
-        //products.addAll(newProducts);
         //check if this product is for 1+ years
-        IronDetector ironDetector = (((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).ironDetector);
-        ArrayList<AgeSelection> ages = (ArrayList<AgeSelection>) ironDetector.getAge();
-
-        for(Product prod : newProducts)
-        {
-            for (AgeSelection age : ages) {
-                if (age.isSelected() ) {
-
-                    if( (prod.getMinAge() <= 0 && prod.getMaxAge() <=0)
-                            || ( age.isInRange(prod.getMinAge()) || age.isInRange(prod.getMaxAge()) ) )
-                    {
-                        products.add(prod);
-                    }
-                }
-
-            }
-
+        AgeSelection selectedAge = ((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).ironDetector.getSelectedAge();
+        if (selectedAge == null) {
+            return;
         }
-
-
-
+        for (Product prod : newProducts) {
+            if ((prod.getMinAge() <= 0 && prod.getMaxAge() <= 0)
+                    || (selectedAge.isInRange(prod.getMinAge()) || selectedAge.isInRange(prod.getMaxAge()))) {
+                products.add(prod);
+            }
+        }
 
         productsAdapter.notifyDataSetChanged();
     }
@@ -217,12 +229,11 @@ public class ProductsActivity extends Activity {
         checkPopupLimits();
     }
 
-    private void checkBo()
-    {
+    private void checkBo() {
         int bo = getApplicationContext().getResources().getIdentifier(Utility.showBo(), "drawable", "com.e2esp.nestleironcalculator");
         imgbo.setImageResource(bo);
     }
-    
+
     private void moveBall() {
         Utility.calculateIron(getBaseContext());
         double topPadding = Utility.calc_ball_top_padding();

@@ -1,6 +1,7 @@
 package com.e2esp.nestleironcalculator.adapters;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     public class ProductViewHolder extends RecyclerView.ViewHolder {
 
         private View topView;
+        private View prodHeader;
         private TextView txtProduct;
         private ImageView imgselect;
         private ImageView imgprod;
@@ -74,6 +76,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         public ProductViewHolder(View itemView) {
             super(itemView);
             topView = itemView;
+            prodHeader = itemView.findViewById(R.id.prodHeader);
             txtProduct = (TextView) itemView.findViewById(R.id.txtProduct);
             imgselect = (ImageView) itemView.findViewById(R.id.imgselect);
             imgprod = (ImageView) itemView.findViewById(R.id.imgprod);
@@ -92,7 +95,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             txtProduct.setText(product.getName());
             txtPortionSize.setText(product.getPortionSize()+"");
             txtUnit.setText(product.getUnit());
-            txtTitle.setText(product.getTitle());
+            txtTitle.setText(Html.fromHtml(product.getTitle()));
 
             try {
                 int resourceId = context.getResources().getIdentifier(product.getId().toLowerCase(), "drawable", "com.e2esp.nestleironcalculator");
@@ -117,21 +120,18 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
                 topView.setBackgroundColor(context.getResources().getColor(R.color.white));
             }
 
-            int collapseImageId = context.getResources().getIdentifier("collapse", "drawable", "com.e2esp.nestleironcalculator");
-            int expandImageId = context.getResources().getIdentifier("expand", "drawable", "com.e2esp.nestleironcalculator");
-
             String visibleProduct = ((NestleIronCalculatorApp) context.getApplicationContext()).visibleProductId;
             if (product != null && product.getId() != null && product.getId().equals(visibleProduct)) {
                 prodDetailLayout.setVisibility(View.VISIBLE);
                 txtTitle.setVisibility(View.VISIBLE);
-                imgExpand.setImageResource(expandImageId);
+                imgExpand.setImageResource(R.drawable.expand);
             } else {
                 prodDetailLayout.setVisibility(View.GONE);
                 txtTitle.setVisibility(View.GONE);
-                imgExpand.setImageResource(collapseImageId);
+                imgExpand.setImageResource(R.drawable.collapse);
             }
 
-            txtProduct.setOnClickListener(new View.OnClickListener() {
+            prodHeader.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onProductClick(product);
@@ -160,23 +160,6 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
             else
                 ((NestleIronCalculatorApp) context.getApplicationContext()).visibleProductId = product.getId();
             notifyDataSetChanged();
-
-//            int collapseImageId = context.getResources().getIdentifier("collapse", "drawable", "com.e2esp.nestleironcalculator");
-//            int expandImageId = context.getResources().getIdentifier("expand", "drawable", "com.e2esp.nestleironcalculator");
-//            if(prodDetailLayout.getVisibility() == View.VISIBLE) {
-//                prodDetailLayout.setVisibility(View.GONE);
-//                txtTitle.setVisibility(View.GONE);
-//                imgExpand.setImageResource(collapseImageId);
-//                product.setVisible(true);
-//            }
-//            else {
-//                prodDetailLayout.setVisibility(View.VISIBLE);
-//                txtTitle.setVisibility(View.VISIBLE);
-//                imgExpand.setImageResource(expandImageId);
-//                visibleProduct = "";
-//                product.setVisible(false);
-//            }
-
         }
     }
 

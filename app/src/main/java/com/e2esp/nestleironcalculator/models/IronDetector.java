@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 public class IronDetector implements Parcelable {
 
-
     private ArrayList<AgeSelection> age;
     private ArrayList<Instruction> instructions;
     private ArrayList<ArrowCalculationRange> arrowCalcRanges;
@@ -26,7 +25,6 @@ public class IronDetector implements Parcelable {
     private String commaDigits;
     private String RDAText;
 
-
     String calcIronText;
 
     public IronDetector() {
@@ -34,7 +32,6 @@ public class IronDetector implements Parcelable {
     }
 
     public IronDetector(Parcel p) {
-
         //this.age = p.readString();
         this.RDA = Double.parseDouble(p.readString());
         this.unit = p.readString();
@@ -42,7 +39,6 @@ public class IronDetector implements Parcelable {
         this.commaDigits = p.readString();
         this.RDAText = p.readString();
         this.calcIronText = p.readString();
-
     }
 
     public ArrayList<Result> getResults() {
@@ -52,7 +48,6 @@ public class IronDetector implements Parcelable {
     public void setResults(ArrayList<Result> results) {
         this.results = results;
     }
-
 
     public ArrayList<Category> getCategories() {
         return categories;
@@ -64,6 +59,17 @@ public class IronDetector implements Parcelable {
 
     public ArrayList<AgeSelection> getAge() {
         return age;
+    }
+
+    public AgeSelection getSelectedAge() {
+        AgeSelection selectedAge = null;
+        for (AgeSelection ageSelection : age) {
+            if (ageSelection.isSelected()) {
+                selectedAge = ageSelection;
+                break;
+            }
+        }
+        return selectedAge;
     }
 
     public void setAge(ArrayList<AgeSelection> age) {
