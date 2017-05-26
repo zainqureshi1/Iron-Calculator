@@ -59,6 +59,13 @@
         android:textColor="@color/blue"
         android:textSize="@dimen/text_size_medium" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_margin="@dimen/margin_small"
+        android:background="@color/lightGrey" />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
@@ -68,7 +75,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_above="@+id/btnNext" />
+            android:layout_above="@+id/btnNext"
+            />
 
         <Button
             android:id="@+id/btnBack"
@@ -77,6 +85,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:paddingLeft="45dp"
+
             android:background="@drawable/button_back_to_calculate"/>
 
         <Button

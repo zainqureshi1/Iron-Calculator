@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableString;
@@ -14,10 +16,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.e2esp.nestleironcalculator.R;
+import com.e2esp.nestleironcalculator.adapters.IronRichProductRecyclerAdapter;
+import com.e2esp.nestleironcalculator.adapters.ProductRecyclerAdapter;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
 import com.e2esp.nestleironcalculator.callbacks.OnDialogClickedListener;
+import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
+import com.e2esp.nestleironcalculator.models.AgeSelection;
 import com.e2esp.nestleironcalculator.models.ArrowCalculationRange;
 import com.e2esp.nestleironcalculator.models.Category;
+import com.e2esp.nestleironcalculator.models.IronDetector;
+import com.e2esp.nestleironcalculator.models.Product;
 import com.e2esp.nestleironcalculator.utils.Consts;
 import com.e2esp.nestleironcalculator.utils.DialogHandler;
 
@@ -36,6 +44,8 @@ public class ResultActivity extends Activity {
     private TextView textViewResultText;
 
     private RecyclerView productsRecyclerView;
+    private ArrayList<Product> products;
+    private IronRichProductRecyclerAdapter productsAdapter;
 
     private double[] finalWeights;
 
@@ -70,6 +80,14 @@ public class ResultActivity extends Activity {
         textViewResultText = (TextView) findViewById(R.id.textViewResultText);
 
         productsRecyclerView = (RecyclerView) findViewById(R.id.productsRecyclerView);
+        products = new ArrayList<>();
+        productsAdapter = new IronRichProductRecyclerAdapter(getBaseContext(), products);
+        productsRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        productsRecyclerView.setAdapter(productsAdapter);
+
+
+        fillProducts();
+
 
         findViewById(R.id.btnBack).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +101,25 @@ public class ResultActivity extends Activity {
                 finishAffinity();
             }
         });
+    }
+    private void fillProducts() {
+        products.clear();
+
+        ArrayList<Category> categories = ((NestleIronCalculatorApp) getApplicationContext()).ironDetector.getCategories();
+
+        for(Category cat : categories)
+        {
+            ArrayList<Product> newProducts = cat.getProducts();
+
+            for(Product prod : newProducts)
+            {
+                if(prod.isIronRichFood())
+                    products.add(prod);
+            }
+        }
+
+
+        productsAdapter.notifyDataSetChanged();
     }
 
     private void calculateTotalIronPercent() {

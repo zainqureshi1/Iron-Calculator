@@ -39,6 +39,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         this.onProductClickListener = onProductClickListener;
     }
 
+
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.product_item, parent, false);
@@ -53,6 +54,7 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         holder.bindView(products.get(position), position);
+
     }
 
     public class ProductViewHolder extends RecyclerView.ViewHolder {
@@ -86,27 +88,6 @@ public class ProductRecyclerAdapter extends RecyclerView.Adapter<ProductRecycler
         }
 
         public void bindView(final Product product, int position) {
-
-            //check if this product is for 1+ years
-            IronDetector ironDetector = (((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).ironDetector);
-            ArrayList<AgeSelection> ages = (ArrayList<AgeSelection>) ironDetector.getAge();
-
-
-            for (AgeSelection age : ages) {
-                if (age.isSelected() ) {
-
-                    if(age.getMaxAge() <= 12 && product.getId().equals(Consts.one_year_products_id))
-                    {
-                        topView.setVisibility(View.GONE);
-                        return;
-                    }
-                    else
-                        topView.setVisibility(View.VISIBLE);
-                    break;
-                }
-
-            }
-
 
             txtProduct.setText(product.getName());
             txtPortionSize.setText(product.getPortionSize()+"");
