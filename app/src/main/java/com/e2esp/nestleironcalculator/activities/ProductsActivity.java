@@ -191,12 +191,10 @@ public class ProductsActivity extends Activity {
 
     private void checkBo()
     {
-        int bo = getApplicationContext().getResources().getIdentifier(Utility.showBo(), "drawable", "com.e2esp.nestleironcalculator");
-
-        imgbo.setBackgroundResource(bo);
-
-
+        int bo = getApplicationContext().getResources().getIdentifier(Utility.shsowBo(), "drawable", "com.e2esp.nestleironcalculator");
+        imgbo.setImageResource(bo);
     }
+    
     private void moveBall() {
         Utility.calculateIron(getBaseContext());
         double topPadding = Utility.calc_ball_top_padding();
