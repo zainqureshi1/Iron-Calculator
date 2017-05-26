@@ -22,7 +22,9 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by farooq on 11-May-17.
@@ -216,6 +218,13 @@ public class ParseXMLData {
                         else if (name.equals("Product")) {
                             isProductStart = true;
                             currentProduct = new Product();
+                            getAttribute(currentProduct, parser);
+                        }
+                        else if (name.equals("minAge") && isProductStart) {
+                            currentProduct.setMinAge( Integer.parseInt( parser.nextText())) ;
+                        }
+                        else if (name.equals("maxAge") && isProductStart) {
+                            currentProduct.setMaxAge( Integer.parseInt( parser.nextText())) ;
                         }
                         else if (name.equals("Id") && isProductStart) {
                             currentProduct.setId(parser.nextText());
@@ -401,6 +410,25 @@ public class ParseXMLData {
         ironDetector.setPopups(popups);
 
         //print(ironDetector);
+    }
+
+    private void getAttribute(Product prod, XmlPullParser parser)
+    {
+
+        //Map<String,String> attrs=null;
+        int count =parser.getAttributeCount();
+        if(count != -1) {
+          //  attrs = new HashMap<>(acount);
+            for(int x=0; x<count ; x++) {
+                String atrName = parser.getAttributeName(x);
+                if (Consts.iron_rich_attribute.equals(atrName)) {
+                    prod.setIronRichFood(Boolean.parseBoolean(parser.getAttributeValue(x)));
+                    // attrs.put(parser.getAttributeName(x), parser.getAttributeValue(x));
+                }
+
+            }
+        }
+
     }
 
     private void print(IronDetector ironDetector) {

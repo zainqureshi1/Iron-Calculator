@@ -18,16 +18,9 @@ public class Product  implements Parcelable {
     private String title;
     private double selectedSize;
     private boolean isSelected;
-
-    public boolean isVisible() {
-        return isVisible;
-    }
-
-    public void setVisible(boolean visible) {
-        isVisible = visible;
-    }
-
-    private boolean isVisible;
+    private int minAge;
+    private int maxAge;
+    private boolean isIronRichFood;
 
     public Product() {
 
@@ -116,9 +109,33 @@ public class Product  implements Parcelable {
         isSelected = selected;
     }
 
+    public boolean isIronRichFood() {
+        return isIronRichFood;
+    }
+
+    public void setIronRichFood(boolean ironRichFood) {
+        isIronRichFood = ironRichFood;
+    }
+
     public boolean isMilk() {
         return id.toLowerCase().contains("milk") || name.toLowerCase().contains("milk");
     }
+    public int getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
 
     public boolean isSolidFood() {
         return unit.equals("g");

@@ -26,7 +26,9 @@ import com.e2esp.nestleironcalculator.adapters.ProductRecyclerAdapter;
 import com.e2esp.nestleironcalculator.applications.NestleIronCalculatorApp;
 import com.e2esp.nestleironcalculator.callbacks.OnDialogClickedListener;
 import com.e2esp.nestleironcalculator.callbacks.OnProductClickListener;
+import com.e2esp.nestleironcalculator.models.AgeSelection;
 import com.e2esp.nestleironcalculator.models.Category;
+import com.e2esp.nestleironcalculator.models.IronDetector;
 import com.e2esp.nestleironcalculator.models.Product;
 import com.e2esp.nestleironcalculator.utils.Consts;
 import com.e2esp.nestleironcalculator.utils.DialogHandler;
@@ -80,6 +82,7 @@ public class ProductsActivity extends Activity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategories.setAdapter(adapter);
         spinnerCategories.setSelection(0);
+
         spinnerCategories.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -155,7 +158,32 @@ public class ProductsActivity extends Activity {
 
     private void fillProducts(ArrayList<Product> newProducts) {
         products.clear();
-        products.addAll(newProducts);
+
+
+        //products.addAll(newProducts);
+        //check if this product is for 1+ years
+        IronDetector ironDetector = (((NestleIronCalculatorApp) NestleIronCalculatorApp.getAppContext()).ironDetector);
+        ArrayList<AgeSelection> ages = (ArrayList<AgeSelection>) ironDetector.getAge();
+
+        for(Product prod : newProducts)
+        {
+            for (AgeSelection age : ages) {
+                if (age.isSelected() ) {
+
+                    if( (prod.getMinAge() <= 0 && prod.getMaxAge() <=0)
+                            || ( age.isInRange(prod.getMinAge()) || age.isInRange(prod.getMaxAge()) ) )
+                    {
+                        products.add(prod);
+                    }
+                }
+
+            }
+
+        }
+
+
+
+
         productsAdapter.notifyDataSetChanged();
     }
 
@@ -191,7 +219,7 @@ public class ProductsActivity extends Activity {
 
     private void checkBo()
     {
-        int bo = getApplicationContext().getResources().getIdentifier(Utility.shsowBo(), "drawable", "com.e2esp.nestleironcalculator");
+        int bo = getApplicationContext().getResources().getIdentifier(Utility.showBo(), "drawable", "com.e2esp.nestleironcalculator");
         imgbo.setImageResource(bo);
     }
     

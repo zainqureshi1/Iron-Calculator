@@ -213,6 +213,8 @@ Get started now!
 						<IronPer100mg>0.05</IronPer100mg>
 						<IronPerPortion>0.05</IronPerPortion>
 						<Title>1 Cup = 100mls</Title>
+						<minAge>13</minAge>
+						<maxAge>24</maxAge>
 					</Product>
 					
 					
@@ -233,6 +235,7 @@ Get started now!
 						<IronPerPortion>1.66</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
+						
 					</Product>
 					<Product richFood="true" useBigImage="true">
 						<Id>cerelac_fruit_milk</Id>
@@ -276,18 +279,11 @@ Get started now!
 						<IronPerPortion>1.88</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
+						<minAge>6</minAge>
+						<maxAge>12</maxAge>
+
 					</Product>
 
-					<Product richFood="true" useBigImage="true">
-						<Id>cerelack_what_dates</Id>
-						<Name><![CDATA[CERELAC Orange & Apple]]></Name>
-						<Unit>gms</Unit>
-						<PortionSize>25</PortionSize>
-						<IronPer100mg>5</IronPer100mg>
-						<IronPerPortion>1.66</IronPerPortion>
-						<Title>3 bowl= 75gms</Title>
-						<LinkUrl><![CDATA[#]]></LinkUrl> 
-					</Product>
 					<Product richFood="true" useBigImage="true">
 						<Id>cerelack_Wheat_Fruit_Pieces</Id>
 						<Name><![CDATA[CERELAC Wheat & Banana]]></Name>
@@ -307,6 +303,9 @@ Get started now!
 						<IronPerPortion>3</IronPerPortion>
 						<Title>2 bowl = 70gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
+						<minAge>18</minAge>
+						<maxAge>24</maxAge>
+
 					</Product>
 				
 					<Product richFood="true" useBigImage="true">
@@ -329,6 +328,8 @@ Get started now!
 						<IronPerPortion>1.88</IronPerPortion>
 						<Title>3 bowl = 75gms</Title>
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
+						<minAge>13</minAge>
+						<maxAge>18</maxAge>						
 					</Product>
 					<Product richFood="true" useBigImage="true">
 						<Id>cerelac_chaunsa</Id>
@@ -337,8 +338,10 @@ Get started now!
 						<PortionSize>25</PortionSize>
 						<IronPer100mg>7.5</IronPer100mg>
 						<IronPerPortion>1.88</IronPerPortion>
-						<Title>3 bowl = 75gms</Title>
+						<Title>3 bowl = 75gms</Title>						
 						<LinkUrl><![CDATA[#]]></LinkUrl> 
+						<minAge>6</minAge>
+						<maxAge>12</maxAge>
 					</Product>
 
 					
